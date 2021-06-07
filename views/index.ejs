@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../views/partials/head.ejs'); %>
+</head>
+<body>
+<header>
+  <%- include('../views/partials/header.ejs'); %>
+</header>
+<main>
+    <div class='index-bg show_bg_2'>
+        <h1>Real Estate Finder</h1>
+    </div>
+    <div class="card-container">
+    <% property.forEach(property => { %>
+        <div class='card light-blue darken-4 z-depth-3 stock-card'>
+            <div class="card-content white-text">
+                <h3 class='card-title'>$<%= property.price %></h3>
+                <div class='property-content'>
+                    <img src="<%=property.img%>">
+                    <div>
+                        <div class='property-address'>
+                            <p><%= property.address %> |</p>
+                            <p><%= property.city %> |</p>
+                            <p><%= property.state %> |</p>
+                            <p><%= property.zip %></p>
+                        </div>
+                        <p><%= property.bedrooms %> bedrooms</p>
+                        <p><%= property.baths %> baths</p>
+                        <p><%= property.seller %></p>
+                        <a class="waves-effect waves-light btn" href="/property/<%=property.id%>">Check it out!</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    <% }) %>
+    </div>
+</main>
+<footer>
+  <%- include('../views/partials/footer.ejs'); %>
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

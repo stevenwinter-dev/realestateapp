@@ -1,0 +1,138 @@
+body {
+    background-color: whitesmoke;
+}
+
+h1 {
+    text-shadow: 2px 2px #000;
+    font-size: 5rem;
+}
+
+h3 {
+    margin-top: 0;
+}
+
+.card-title {
+    font-size: 3rem!important;
+    margin-bottom: 1rem!important;
+}
+
+.card-content {
+    margin: 25px 0;
+}
+
+.card-content p {
+    padding-top: 15px;
+}
+
+/* #img-container {
+    background-image: url('https://images.unsplash.com/photo-1552505557-c085030eea99?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80');
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+}
+
+#img-gradient {
+    background-image: 
+    linear-gradient(to bottom, rgba(245, 246, 252, 0.52), rgba(117, 19, 93, 0.73)),
+    url('https://images.unsplash.com/photo-1552505557-c085030eea99?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=2850&q=80');
+    width: 100%;
+    height: 400px;
+    background-size: cover;
+} */
+
+.show_bg_2 {
+    background-image:
+    /* linear-gradient(to top, rgba(41, 128, 185, 0.52), rgba(109, 213, 250, 0.73)), */
+    url('https://images.unsplash.com/photo-1568634500241-7fd96820b224?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80');
+    width: 100%;
+    height: 80vh;
+    background-size: cover;
+    color: white;
+    padding: 20px;
+    background-image: no-repeat;
+    background-position: bottom;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+nav {
+    background-color: black;
+}
+
+i {
+    font-size: 50px!important;
+}
+
+.search {
+    background-color: rgba(0,0,0,.4);
+    border-radius: 15px;
+}
+
+input[type=search]:not(.browser-default) {
+    border-bottom: none;
+}
+
+.stock-card {
+    width: 40%;
+}
+
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+}
+
+.property-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+
+.property-content img {
+    width: 100%;
+}
+
+.stock-collapse {
+    width: 250px;
+}
+
+.collapsible {
+    border: none;
+    box-shadow: none;
+}
+
+
+.collapsible-header {
+    border: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.collapsible-body {
+    border-bottom: none;
+    background-color: rgba(255,255,255,0.7);
+}
+
+.property-address {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+a {
+    margin-top: 15px;
+}
