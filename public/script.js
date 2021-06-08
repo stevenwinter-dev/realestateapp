@@ -8,33 +8,28 @@ document.addEventListener('DOMContentLoaded', function() {
     var instances = M.Collapsible.init(elems, {});
   });
 
-  
+  document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems, {});
+  });
 
-  const labels = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-  ];
-  const data = {
-    labels: labels,
-    datasets: [{
-      label: 'My First dataset',
-      backgroundColor: 'rgb(255, 99, 132)',
-      borderColor: 'rgb(255, 99, 132)',
-      data: [0, 10, 5, 2, 20, 30, 45],
-    }]
-  };
+const deleteBtn = document.querySelector('#delete')
+const deleteForm = document.querySelector('#form-delete')
+const editBtn = document.querySelector('#edit')
+const editForm = document.querySelector('#edit-form')
 
-  const config = {
-    type: 'line',
-    data,
-    options: {}
-  };
+// if(editBtn) {
+//   editBtn.addEventListener('click', editHandler)
+// }
 
-  var myChart = new Chart(
-    document.getElementById('myChart'),
-    config
-  );
+if(deleteBtn) {
+  deleteBtn.addEventListener('click', deleteHandler)
+}
+
+function editHandler() {
+  editForm.submit()
+}
+
+function deleteHandler() {
+  deleteForm.submit()
+}

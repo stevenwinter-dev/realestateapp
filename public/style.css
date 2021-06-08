@@ -136,3 +136,13 @@ input[type=search]:not(.browser-default) {
 a {
     margin-top: 15px;
 }
+
+form {
+    color: white;
+}
+
+.form-button input{
+    width: 150px;
+    color: white;
+    font-size: 15px!important;
+}

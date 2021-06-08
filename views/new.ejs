@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../views/partials/head.ejs'); %>
+</head>
+<body>
+<header>
+  <%- include('../views/partials/header.ejs'); %>
+</header>
+<main>
+    <div class='index-bg show_bg_2'>
+        <h1>Real Estate Finder</h1>
+    </div>
+                
+
+        <h2 class='grey-text darken-4'>Create New Listing:</h2>
+
+        <form action="/property/" method="POST" id='new-form'>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="seller" type="text" name='seller' class="validate">
+                    <label for="seller">Seller</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="price" type="number" name='price' class="validate">
+                    <label for="price">Price</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="address" type="text" name='address' class="validate">
+                    <label for="address">Address</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="city" type="text" name='city' class="validate">
+                    <label for="city">City</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="state" type="text" name='state' class="validate">
+                    <label for="state">State</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="zip" type="number" name='zip' class="validate">
+                    <label for="zip">Zip Code</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="bedrooms" type="number" name='bedrooms' class="validate">
+                    <label for="bedrooms">Number of Bedrooms</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="baths" type="number" name='baths' class="validate">
+                    <label for="baths">Number of Bathrooms</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="img" type="text" name='img' class="validate">
+                    <label name="img">Image URL</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="description" type="text" name='description' class="validate">
+                    <label name="description">Enter a brief description</label>
+                </div>
+            </div>
+
+                
+                <input type="submit" value='submit'>
+        
+        </form>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn green accent-3" id='edit'>Submit</a>
+    </div>
+</main>
+<footer>
+  <%- include('../views/partials/footer.ejs'); %>
+</footer>
+<script src="../script.js"></script>
+</body>
+</html>

@@ -29,8 +29,99 @@
                         <p><%= property.baths %> baths</p>
                         <p><%= property.seller %></p>
                 
-                        <a class="waves-effect waves-light btn blue lighten-2" href="/property/<%=property.id%>">Edit</a>
-                        <a class="waves-effect waves-light btn red accent-3" href="/property/">Delete</a>
+                        
+                        <!-- <a class="waves-effect waves-light btn red accent-3" href="/property/">Delete</a> -->
+                        <!-- <form action="/property/<%=property._id%>?_method=DELETE" method="POST" class='form-button'>
+                            <input type="submit" value="Edit" class="waves-effect waves-light btn red accent-3" />
+                        </form> -->
+
+                          <!-- Modal Trigger -->
+  <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Edit</a>
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal">
+    <div class="modal-content">
+        <h2 class='grey-text darken-4'>Edit Listing:</h2>
+
+        <form action="/property/<%=property._id%>?_method=put" method="POST" id='edit-form'>
+
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="seller" type="text" class="validate" value='<%=property.seller%>' name='seller'>
+                    <label name="seller">Seller</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="price" type="number" class="validate" value='<%=property.price%>' name='price'>
+                    <label name="price">Price</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="address" type="text" class="validate" value='<%=property.address%>' name='address'>
+                    <label name="address">Address</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="city" type="text" class="validate" value='<%=property.city%>' name='city'>
+                    <label name="city">City</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="state" type="text" class="validate" value='<%=property.state%>' name='state'>
+                    <label name="state">State</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="zip" type="number" class="validate" value='<%=property.zip%>' name='zip'>
+                    <label name="zip">Zip Code</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="bedrooms" type="number" class="validate" value='<%=property.bedrooms%>' name='bedrooms'>
+                    <label name="bedrooms">Number of Bedrooms</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="baths" type="number" class="validate" value='<%=property.baths%>' name='baths'>
+                    <label name="baths">Number of Bathrooms</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="img" type="text" class="validate" value='<%=property.img%>' name='img'>
+                    <label name="img">Image URL</label>
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="description" type="text" class="validate" value='<%=property.description%>' name='description'>
+                    <label name="description">Enter a brief description</label>
+                </div>
+            </div>
+
+                
+                <input type="submit" value='submit'>
+        
+        </form>
+    </div>
+    <div class="modal-footer">
+        <a class="waves-effect waves-light btn green accent-3" id='edit'>Submit</a>
+    </div>
+  </div>
+
+                        <form action="/property/<%=property._id%>?_method=DELETE" method="POST" class='form-button' id='form-delete'>
+                            <a class="waves-effect waves-light btn red accent-3" id="delete" >Delete</a>
+                        </form>
+                        
+                    
+                
                     </div>
                 </div>
             </div>
