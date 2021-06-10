@@ -1,7 +1,7 @@
 const mongoose = require('../db/connection')
 
 const PropertySchema = new mongoose.Schema({
-    seller: String,
+    seller: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     price: { type: Number, required: true },
     address: { type: String, required: true },
     city: { type: String, required: true },

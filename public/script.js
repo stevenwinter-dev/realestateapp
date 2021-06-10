@@ -17,13 +17,23 @@ const deleteBtn = document.querySelector('#delete')
 const deleteForm = document.querySelector('#form-delete')
 const editBtn = document.querySelector('#edit')
 const editForm = document.querySelector('#edit-form')
+const newBtn = document.querySelector('#create')
+const newForm = document.querySelector('#new-form')
 
-// if(editBtn) {
-//   editBtn.addEventListener('click', editHandler)
-// }
+if(newBtn) {
+  newBtn.addEventListener('click', newHandler)
+}
+
+if(editBtn) {
+  editBtn.addEventListener('click', editHandler)
+}
 
 if(deleteBtn) {
   deleteBtn.addEventListener('click', deleteHandler)
+}
+
+function newHandler() {
+  newForm.submit()
 }
 
 function editHandler() {

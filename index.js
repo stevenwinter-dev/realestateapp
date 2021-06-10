@@ -16,6 +16,9 @@ app.use(methodOverride('_method'))
 const propertyController = require('./controllers/propertyController')
 app.use('/property', propertyController)
 
+const userController = require('./controllers/userController')
+app.use('/user', userController)
+
 app.set('port', process.env.PORT || 3000)
 
 app.listen(app.get('port'), () => {
