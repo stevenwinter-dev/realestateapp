@@ -1,12 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <%- include('../views/partials/head.ejs'); %>
-</head>
-<body>
-<header>
-  <%- include('../views/partials/header.ejs'); %>
-</header>
 <main>
     <div class='index-bg show_bg_2'>
         <h1>Real Estate Finder</h1>
@@ -27,9 +18,9 @@
                         </div>
                         <p><%= property.bedrooms %> bedrooms</p>
                         <p><%= property.baths %> baths</p>
-                        <p><%= property.seller %></p>
+                        <p><%= property.seller.email %></p>
                 
-                        
+                        <% console.log(property.seller) %>
                         <!-- <a class="waves-effect waves-light btn red accent-3" href="/property/">Delete</a> -->
                         <!-- <form action="/property/<%=property._id%>?_method=DELETE" method="POST" class='form-button'>
                             <input type="submit" value="Edit" class="waves-effect waves-light btn red accent-3" />
@@ -127,9 +118,3 @@
 
     </div>
 </main>
-<footer>
-  <%- include('../views/partials/footer.ejs'); %>
-</footer>
-<script src="../script.js"></script>
-</body>
-</html>

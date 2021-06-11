@@ -19,6 +19,7 @@ router.get('/new', (req, res, next) => {
 router.get('/:id', (req, res, next) => {
     const id = req.params.id
     Property.findById(id)
+    .populate('seller')
     .then(property => res.render('property', {property}))
 })
 

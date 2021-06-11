@@ -19,6 +19,9 @@ const editBtn = document.querySelector('#edit')
 const editForm = document.querySelector('#edit-form')
 const newBtn = document.querySelector('#create')
 const newForm = document.querySelector('#new-form')
+const newUserBtn = document.querySelector('#create-user')
+const newUserForm = document.querySelector('#new-user-form')
+
 
 if(newBtn) {
   newBtn.addEventListener('click', newHandler)
@@ -32,8 +35,16 @@ if(deleteBtn) {
   deleteBtn.addEventListener('click', deleteHandler)
 }
 
+if(newUserBtn) {
+  newUserBtn.addEventListener('click', newUserHandler)
+}
+
 function newHandler() {
   newForm.submit()
+}
+
+function newUserHandler() {
+  newUserForm.submit()
 }
 
 function editHandler() {
