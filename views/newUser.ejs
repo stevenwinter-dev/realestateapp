@@ -1,26 +1,66 @@
 <main>
-    <div class='index-bg show_bg_2'>
-        <h1>Real Estate Finder</h1>
-    </div>
-                
 
-        <h2 class='grey-text darken-4'>Create New Listing:</h2>
 
-        <form action="/user" method="POST" id='new-user-form'>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="email" type="email" name='email' class="validate">
-                    <label for="email">Email</label>
+    <ul id="tabs-swipe-demo" class="tabs">
+        <li class="tab col s3"><a class="active" href="#test-swipe-1">Sign In</a></li>
+        <li class="tab col s3"><a href="#test-swipe-2">Create new account</a></li>
+
+      </ul>
+
+
+      <div class="row" id="test-swipe-1">
+        <div class="col s12 m6">
+          <div class="card white">
+            <div class="card-content black-text">
+              <span class="card-title">Sign in</span>
+              <form action="/user" method="POST" id='new-user-form'>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" name='email' class="validate">
+                        <label for="email">Email</label>
+                    </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="input-field col s12">
-                    <input id="password" type="password" name='password' class="validate">
-                    <label password="price">Password</label>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" name='password' class="validate">
+                        <label password="price">Password</label>
+                    </div>
                 </div>
+            </form>
+            <div class="modal-footer">
+                <a class="waves-effect waves-light btn green accent-3" id='create-user'>Submit</a>
             </div>
-        </form>
-    <div class="modal-footer">
-        <a class="waves-effect waves-light btn green accent-3" id='create-user'>Submit</a>
-    </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row" id="test-swipe-2">
+        <div class="col s12 m6">
+          <div class="card white">
+            <div class="card-content black-text">
+              <span class="card-title">Create account</span>
+              <form action="/user" method="POST" id='new-user-form'>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="email" type="email" name='email' class="validate">
+                        <label for="email">Email</label>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="input-field col s12">
+                        <input id="password" type="password" name='password' class="validate">
+                        <label password="price">Password</label>
+                    </div>
+                </div>
+            </form>
+        <div class="modal-footer">
+            <a class="waves-effect waves-light btn green accent-3" id='create-user'>Submit</a>
+        </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+        
 </main>

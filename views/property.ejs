@@ -19,8 +19,8 @@
                         <p><%= property.bedrooms %> bedrooms</p>
                         <p><%= property.baths %> baths</p>
                         <p><%= property.seller.email %></p>
-                
-                        <% console.log(property.seller) %>
+                        <p class='flow-text'><%= property.description %></p>
+                        
                         <!-- <a class="waves-effect waves-light btn red accent-3" href="/property/">Delete</a> -->
                         <!-- <form action="/property/<%=property._id%>?_method=DELETE" method="POST" class='form-button'>
                             <input type="submit" value="Edit" class="waves-effect waves-light btn red accent-3" />
@@ -38,7 +38,7 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="seller" type="text" class="validate" value='<%=property.seller%>' name='seller'>
+                    <input id="seller" type="text" class="validate" value='<%=property.seller.id%>' name='seller'>
                     <label name="seller">Seller</label>
                 </div>
             </div>

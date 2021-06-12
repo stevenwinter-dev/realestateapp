@@ -2,6 +2,8 @@ const express = require('express')
 const Property = require('../models/property')
 const router = express.Router()
 const User = require('../models/user')
+const bcrypt = require('bcrypt')
+const salt = 10
 
 router.get('/', (req, res) => {
     User.find({})
@@ -22,10 +24,18 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/', (req, res, next) => {
-    console.log(req.body)
-    User.create(req.body)
-    .then(user => res.render('users', {user}))
-    .catch(next)
+    console.log(req.body.email)
+    bcrypt.genSalt(salt, function(err, salt) {
+        bcrypt.hash(req.body.password, salt, function(err, hash) {
+            User.create({
+                email: req.body.email,
+                password: hash
+            })
+            .then(user => res.render('user'))
+            .catch(next)
+        });
+    });
+    
 })
 
 router.put('/:id', (req, res) => {

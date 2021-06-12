@@ -5,6 +5,7 @@ const Property = require('../models/property')
 //SHOW ALL
 router.get('/', (req, res, next) => {
     Property.find({})
+    .populate('seller')
     .then(property => res.render('index', {property}))
     .catch(next)
 })
