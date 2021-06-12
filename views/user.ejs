@@ -1,0 +1,7 @@
+
+<h2><%= property[0].seller.email %></h2>
+<% console.log(property.length) %>
+
+<% property.map(prop => {%>
+    <p><a href="/property/<%=prop.id%>"><%= prop.address %></a></p>
+<% })%>

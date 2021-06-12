@@ -1,5 +1,6 @@
 <% users.forEach(user => { %>
     <h2>User ID: <%=user._id%></h2>
+    <a href="/user/<%=user._id%>">check out listings</a>
    <h3><%= user.email %></h3>
    <h3><%= user.password %></h3>
    <h3><%= user.listings %></h3>

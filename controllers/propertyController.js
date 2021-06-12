@@ -14,7 +14,6 @@ router.get('/new', (req, res, next) => {
     res.render('new')
 })
 
-//60be6a9341db8aae67dd1373
 //SHOW ONE
 router.get('/:id', (req, res, next) => {
     const id = req.params.id

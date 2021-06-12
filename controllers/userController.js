@@ -1,4 +1,5 @@
 const express = require('express')
+const Property = require('../models/property')
 const router = express.Router()
 const User = require('../models/user')
 
@@ -14,8 +15,10 @@ router.get('/new', (req, res) => {
 
 router.get('/:id', (req, res) => {
     const id = req.params.id
-    User.findById(id)
-    .then(user => res.json(user))
+    // User.findById(id)
+    Property.find({seller: id})
+    .populate('seller')
+    .then(property => res.render('user', {property}))
 })
 
 router.post('/', (req, res, next) => {
