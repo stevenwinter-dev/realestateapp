@@ -146,3 +146,57 @@ form {
     color: white;
     font-size: 15px!important;
 }
+
+.index-main {
+    height: 75vh;
+    /* background: #0f0c29; 
+background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29); 
+background: linear-gradient(to right, #24243e, #302b63, #0f0c29);  */
+background: #000428;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+
+}
+
+.index-home {
+    width: 400px;
+    position: absolute;
+    bottom: 80px;
+    right: 25px;
+    border-radius: 10px;
+    border-top-left-radius: 150px;
+}
+
+.index-main nav {
+    background-color: transparent;
+    box-shadow: none;
+    letter-spacing: 2px;
+}
+
+.index-main nav #nav-mobile {
+    margin-left: 10%;
+}
+
+.index-main h1 {
+    width: 55%;
+    color: white;
+    margin-left: 10%;
+    margin-top: 5%;
+    font-weight: 800;
+    letter-spacing: 1.5px;
+}
+
+.index-h1-img-container {
+    display: flex;
+    width: 100vw;
+}
+
+.index-main h2 {
+    color: white;
+    font-size: 2rem;
+    width: 55%;
+    margin-left: 10%;
+    font-weight: 200;
+    letter-spacing: 1px;
+}
