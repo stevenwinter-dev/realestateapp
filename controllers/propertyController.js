@@ -1,6 +1,34 @@
 const express = require('express')
 const router = express.Router()
 const Property = require('../models/property')
+const multer  = require('multer')
+
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+      cb(null, '../project2-real-estate/public/images')
+    },
+    filename: (req, file, cb) => {
+      cb(null, Date.now() + '--' + file.originalname)
+    }
+}) 
+const upload = multer({ storage: storage })
+
+router.get('/upload', (req, res) => {
+    res.render('upload')
+})
+
+router.post('/upload', upload.single('image'), (req, res, next) => {
+    console.log(req.file)
+    
+    
+    console.log(JSON.stringify(req.file))
+  var response = '<a href="/">Home</a><br>'
+  response += "Files uploaded successfully.<br>"
+  response += `<img src="${req.file.path}" /><br>`
+    
+    res.send(response)
+  })
+
 
 //SHOW ALL
 router.get('/', (req, res, next) => {
