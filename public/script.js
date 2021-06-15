@@ -23,6 +23,7 @@ const newBtn = document.querySelector('#create')
 const newForm = document.querySelector('#new-form')
 const newUserBtn = document.querySelector('#create-user')
 const newUserForm = document.querySelector('#new-user-form')
+const favoriteBtn = document.querySelectorAll('.favorite-btn')
 
 
 if(newBtn) {
@@ -39,6 +40,15 @@ if(deleteBtn) {
 
 if(newUserBtn) {
   newUserBtn.addEventListener('click', newUserHandler)
+}
+
+if(favoriteBtn) {
+  favoriteBtn.forEach(btn => btn.addEventListener('click', favoriteHandler))
+}
+
+function favoriteHandler(e) {
+  const form = e.target.parentElement.parentElement
+  form.submit()
 }
 
 function newHandler() {

@@ -51,6 +51,11 @@ function isLoggedIn(req, res, next) {
     res.redirect('/user/login')
 }
 
+function loggedIn(req, res, next) {
+    if(req.user) {
+        console.log(`new CL for reg route ${req.user}`)
+    }
+}
 
 router.get('/', (req, res) => {
     User.find({})
@@ -84,8 +89,6 @@ router.get('/:id', (req, res) => {
     .populate('seller')
     .then(property => res.render('user', {property}))
 })
-
-
 
 router.post('/register', (req, res, next) => {
     console.log(req.body.email)

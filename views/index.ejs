@@ -19,8 +19,12 @@
                         <p><%= property.bedrooms %> bedrooms</p>
                         <p><%= property.baths %> baths</p>
                         <p><%= property.seller.email %></p>
-                        <a class="waves-effect waves-light btn" href="/property/<%=property.id%>">Check it out!</a>
-                        
+                        <div class='btn-container'>
+                            <a class="waves-effect waves-light btn" href="/property/<%=property.id%>">Check it out!</a>
+                            <form action="/property/favorites" method="POST" class='favorite-form' id='<%= property.id %>'>
+                                <input type="hidden" name='id' value='<%=property.id%>'><a class="waves-effect waves-light btn-floating btn-large waves-effect waves-light purple accent-2 favorite-btn"><i class="material-icons" data-id='<%= property.id %>'>bookmark_border</i></a></input>
+                            </form>
+                        </div>    
                     </div>
                 </div>
             </div>
