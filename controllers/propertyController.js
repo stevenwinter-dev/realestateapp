@@ -97,4 +97,16 @@ router.delete('/:id', (req, res, next) => {
     .catch(next)
 })
 
+//WORKING ON DELETE
+// router.delete('/:id', (req, res, next) => {
+//     const id = req.params.id
+//     Property.findOneAndDelete({_id: id})
+//     .then(() => {
+//         Property.find({seller: req.user.seller})
+//         .populate('seller')
+//         .then(properties => res.render('dashboard', {properties}))
+//     })
+//     .catch(next)
+// })
+
 module.exports = router

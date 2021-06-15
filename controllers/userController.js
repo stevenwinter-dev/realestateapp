@@ -43,32 +43,10 @@ passport.use(new localStrategy({usernameField: 'email'}, (email, password, done)
     })
 }))
 
-router.get('/setup', async (req, res) => {
-	const exists = await User.exists({ email: "git@hub.com" });
-
-	if (exists) {
-		res.redirect('/user/login');
-		return;
-	};
-
-	bcrypt.genSalt(10, function (err, salt) {
-		if (err) return next(err);
-		bcrypt.hash("pass", salt, function (err, hash) {
-			if (err) return next(err);
-			
-			const newAdmin = new User({
-				email: "git@hub.com",
-				password: hash
-			});
-
-			newAdmin.save();
-
-			res.redirect('/user/login');
-		});
-	});
-});
-
 function isLoggedIn(req, res, next) {
+    if(req.user) {
+        console.log(req.user.id)
+    }
     if (req.isAuthenticated()) return next()
     res.redirect('/user/login')
 }
@@ -81,7 +59,9 @@ router.get('/', (req, res) => {
 })
 
 router.get('/dashboard', isLoggedIn, (req, res) => {
-    res.render('dashboard')
+    Property.find({seller: req.user.id})
+    .populate('seller')
+    .then(properties => res.render('dashboard', {properties}))
 })
 
 router.get('/login', (req, res) => {

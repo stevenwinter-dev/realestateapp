@@ -1,3 +1,114 @@
-<main>
-    <h1>LOGGED IN</h1>
+<main>  
+    <% if(properties) { %>
+    <div class="card-container">
+        <% properties.forEach(property => { %>
+            <div class='card light-blue darken-4 z-depth-3 stock-card'>
+                <div class="card-content white-text">
+                    <h3 class='card-title'>$<%= property.price %></h3>
+                    <div class='property-content'>
+                        <img src="<%=property.img%>">
+                        <div>
+                            <div class='property-address'>
+                                <p><%= property.address %> |</p>
+                                <p><%= property.city %> |</p>
+                                <p><%= property.state %> |</p>
+                                <p><%= property.zip %></p>
+                            </div>
+                            <p><%= property.bedrooms %> bedrooms</p>
+                            <p><%= property.baths %> baths</p>
+                            <p><%= property.seller.email %></p>
+                            
+
+                            <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Edit</a>
+
+                            <!-- Modal Structure -->
+                            <div id="modal1" class="modal">
+                              <div class="modal-content">
+                                  <h2 class='grey-text darken-4'>Edit Listing:</h2>
+                          
+                                  <form action="/property/<%=property._id%>?_method=put" method="POST" id='edit-form'>
+                          
+                                      <div class="row">
+                                          <div class="input-field col s12">
+                                              <input id="seller" type="text" class="validate" value='<%=property.seller.id%>' name='seller'>
+                                              <label name="seller">Seller</label>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="input-field col s12">
+                                              <input id="price" type="number" class="validate" value='<%=property.price%>' name='price'>
+                                              <label name="price">Price</label>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="input-field col s12">
+                                              <input id="address" type="text" class="validate" value='<%=property.address%>' name='address'>
+                                              <label name="address">Address</label>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="input-field col s12">
+                                              <input id="city" type="text" class="validate" value='<%=property.city%>' name='city'>
+                                              <label name="city">City</label>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="input-field col s12">
+                                              <input id="state" type="text" class="validate" value='<%=property.state%>' name='state'>
+                                              <label name="state">State</label>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="input-field col s12">
+                                              <input id="zip" type="number" class="validate" value='<%=property.zip%>' name='zip'>
+                                              <label name="zip">Zip Code</label>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="input-field col s12">
+                                              <input id="bedrooms" type="number" class="validate" value='<%=property.bedrooms%>' name='bedrooms'>
+                                              <label name="bedrooms">Number of Bedrooms</label>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="input-field col s12">
+                                              <input id="baths" type="number" class="validate" value='<%=property.baths%>' name='baths'>
+                                              <label name="baths">Number of Bathrooms</label>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="input-field col s12">
+                                              <input id="img" type="text" class="validate" value='<%=property.img%>' name='img'>
+                                              <label name="img">Image URL</label>
+                                          </div>
+                                      </div>
+                                      <div class="row">
+                                          <div class="input-field col s12">
+                                              <input id="description" type="text" class="validate" value='<%=property.description%>' name='description'>
+                                              <label name="description">Enter a brief description</label>
+                                          </div>
+                                      </div>
+                          
+                                  
+                                  </form>
+                              </div>
+                              <div class="modal-footer">
+                                  <a class="waves-effect waves-light btn green accent-3" id='edit'>Edit</a>
+                              </div>
+                            </div>
+
+                            <form action="/property/<%=property._id%>?_method=DELETE" method="POST" class='form-button' id='form-delete'>
+                                <a class="waves-effect waves-light btn red accent-3" id="delete" >Delete</a>
+                            </form>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <% }) %>
+        </div>
+<% } else {%>
+    <h2>No current listings</h2>
+    <% } %>
 </main>
