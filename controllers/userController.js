@@ -51,12 +51,6 @@ function isLoggedIn(req, res, next) {
     res.redirect('/user/login')
 }
 
-function loggedIn(req, res, next) {
-    if(req.user) {
-        console.log(`new CL for reg route ${req.user}`)
-    }
-}
-
 router.get('/', (req, res) => {
     User.find({})
     .populate('listings')
@@ -80,6 +74,11 @@ router.post('/login', passport.authenticate('local', {
     successRedirect: '/user/dashboard',
     failureRedirect: '/user/login?error=true'
 }))
+// router.post('/login', (req, res, next) => { passport.authenticate('local', {
+//     successRedirect: '/user/dashboard',
+//     failureRedirect: '/user/login?error=true',
+//     failureFlash: true
+// })(req, res, next))
 
 router.get('/register', (req, res, next) => {
     res.render('register')

@@ -138,6 +138,7 @@ router.post('/', upload.single('img'), (req, res, next) => {
         zip: req.body.zip,
         bedrooms: req.body.bedrooms,
         baths: req.body.baths,
+        imgURL: req.body.imgURL,
         img: {data: req.file.buffer, contentType: req.file.mimetype},
         description: req.body.description
     })
@@ -149,7 +150,7 @@ router.post('/', upload.single('img'), (req, res, next) => {
 })
 
 //UPDATE
-router.put('/:id', (req, res) => {
+router.put('/:id', upload.single('img'), (req, res) => {
     console.log(req.body)
     console.log(`this is the id ${req.params.id}`)  
     const id = req.params.id
@@ -164,7 +165,8 @@ router.put('/:id', (req, res) => {
             zip: req.body.zip,
             bedrooms: req.body.bedrooms,
             baths: req.body.baths,
-            img: req.body.img,
+            imgURL: req.body.imgURL,
+            img: {data: req.file.buffer, contentType: req.file.mimetype},
             description: req.body.description
         },
         { new: true },
