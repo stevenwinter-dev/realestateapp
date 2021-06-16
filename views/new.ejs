@@ -5,8 +5,8 @@
                 
 
         <h2 class='grey-text darken-4'>Create New Listing:</h2>
-
-        <form action="/property/" method="POST" id='new-form'>
+        <!-- enctype="multipart/form-data" -->
+        <form action="/property/" method="POST" id='new-form' enctype="multipart/form-data">
 
             <div class="row">
                 <div class="input-field col s12">
@@ -56,9 +56,15 @@
                     <label for="baths">Number of Bathrooms</label>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="input-field col s12">
                     <input id="img" type="text" name='img' class="validate">
+                    <label name="img">Image URL</label>
+                </div>
+            </div> -->
+            <div class="row">
+                <div class="input-field col s12">
+                    <input id="img" name='img' class="validate" type="file">
                     <label name="img">Image URL</label>
                 </div>
             </div>

@@ -9,7 +9,7 @@ const PropertySchema = new mongoose.Schema({
     zip: { type: Number, required: true },
     bedrooms: { type: Number, required: true },
     baths: { type: Number, required: true },
-    img: String,
+    img: {data: Buffer, contentType: String},
     description: String
 }, { timestamps: true })
 

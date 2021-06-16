@@ -24,6 +24,8 @@ const newForm = document.querySelector('#new-form')
 const newUserBtn = document.querySelector('#create-user')
 const newUserForm = document.querySelector('#new-user-form')
 const favoriteBtn = document.querySelectorAll('.favorite-btn')
+const img = document.querySelector('#decode-img')
+
 
 
 if(newBtn) {

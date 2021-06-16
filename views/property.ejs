@@ -7,7 +7,9 @@
             <div class="card-content white-text">
                 <h3 class='card-title'>$<%= property.price %></h3>
                 <div class='property-content'>
-                    <img src="<%=property.img%>">
+                    
+                    <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>">
+                    <% console.log(property.img) %>
                     <div>
                         <div class='property-address'>
                             <p><%= property.address %> |</p>

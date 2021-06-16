@@ -3,16 +3,33 @@ const router = express.Router()
 const Property = require('../models/property')
 const multer  = require('multer')
 const User = require('../models/user')
+const storage = multer.memoryStorage()
+const uploads = multer({ storage: storage })
 
-const storage = multer.diskStorage({
-    destination: (req, file, cb) => {
-      cb(null, '../project2-real-estate/public/images')
-    },
-    filename: (req, file, cb) => {
-      cb(null, Date.now() + '--' + file.originalname)
+// const storage = multer.diskStorage({
+//     destination: (req, file, cb) => {
+//       cb(null, '../project2-real-estate/public/images')
+//     },
+//     filename: (req, file, cb) => {
+//       cb(null, Date.now() + '--' + file.originalname)
+//     }
+// }) 
+const fileFilter = (req, file, cb) => {
+
+    //if the filetype is not right
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true)
+    } else {
+        cb(null, false)
     }
-}) 
-const upload = multer({ storage: storage })
+}
+const upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+})
 
 function isLoggedIn(req, res, next) {
     if(req.user) {
@@ -28,15 +45,12 @@ router.get('/upload', (req, res) => {
 
 router.post('/upload', upload.single('image'), (req, res, next) => {
     console.log(req.file)
-    
-    
     console.log(JSON.stringify(req.file))
-  var response = '<a href="/">Home</a><br>'
-  response += "Files uploaded successfully.<br>"
-  response += `<img src="${req.file.path}" /><br>`
-    
+    var response = '<a href="/">Home</a><br>'
+    response += "Files uploaded successfully.<br>"
+    response += `<img src="${req.file.path}" /><br>`
     res.send(response)
-  })
+})
 
 //SHOW ALL
 router.get('/', (req, res, next) => {
@@ -49,8 +63,8 @@ router.get('/', (req, res, next) => {
 
 //ADD FAVORITE
 router.post('/favorites', isLoggedIn, (req, res, next) => {
-    console.log(`favorites route: ${req.user.id}`)
-    console.log(`favorites route: ${req.body.id}`)
+    // console.log(`favorites route: ${req.user.id}`)
+    // console.log(`favorites route: ${req.body.id}`)
     const userId = req.user.id
     const listingId = req.body.id
     User.findOneAndUpdate(
@@ -80,12 +94,57 @@ router.get('/:id', (req, res, next) => {
 })
 
 
+router.post('/upload', upload.single('image'), (req, res, next) => {
+    console.log(req.file)
+    console.log(JSON.stringify(req.file))
+    var response = '<a href="/">Home</a><br>'
+    response += "Files uploaded successfully.<br>"
+    response += `<img src="${req.file.path}" /><br>`
+    res.send(response)
+})
+//TEST MULTER PROPERTY CREATE
+// router.post('/', upload.single('img'), (req, res, next) => {
+//     // img: {data: req.file.buffer}
+//     Property.create({
+//         seller: req.body.seller,
+//     price: req.body.price,
+//     address: req.body.address,
+//     city: req.body.city,
+//     state: req.body.state,
+//     zip: req.body.zip,
+//     bedrooms: req.body.bedrooms,
+//     baths: req.body.baths,
+//     img: req.file,
+//     description: req.body.description
+//     })
+//     .then(property => res.render('property', {property}))
+//     .catch(next)
+// })
+
+
+
 
 //CREATE
-router.post('/', (req, res, next) => {
-    console.log(req.body)
-    Property.create(req.body)
-    .then(property => res.render('property', {property}))
+router.post('/', upload.single('img'), (req, res, next) => {
+    // console.log(req.body)
+    console.log(req.file)
+    //image: {data: req.file.buffer, contentType: req.file.mimetype}
+    Property.create({
+        seller: req.body.seller,
+        price: req.body.price,
+        address: req.body.address,
+        city: req.body.city,
+        state: req.body.state,
+        zip: req.body.zip,
+        bedrooms: req.body.bedrooms,
+        baths: req.body.baths,
+        img: {data: req.file.buffer, contentType: req.file.mimetype},
+        description: req.body.description
+    })
+    .then(property => {
+        console.log(property)
+        res.render('property', {property})
+    })
     .catch(next)
 })
 

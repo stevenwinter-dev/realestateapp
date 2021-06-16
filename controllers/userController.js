@@ -45,7 +45,7 @@ passport.use(new localStrategy({usernameField: 'email'}, (email, password, done)
 
 function isLoggedIn(req, res, next) {
     if(req.user) {
-        console.log(req.user.id)
+        // console.log(req.user.id)
     }
     if (req.isAuthenticated()) return next()
     res.redirect('/user/login')
@@ -66,7 +66,10 @@ router.get('/', (req, res) => {
 router.get('/dashboard', isLoggedIn, (req, res) => {
     Property.find({seller: req.user.id})
     .populate('seller')
-    .then(properties => res.render('dashboard', {properties}))
+    .then(properties => {
+        console.log(properties)
+        res.render('dashboard', {properties})
+    })
 })
 
 router.get('/login', (req, res) => {
