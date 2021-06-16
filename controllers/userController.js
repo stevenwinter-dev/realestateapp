@@ -7,8 +7,9 @@ const salt = 10
 const session = require('express-session')
 const passport = require('passport')
 const localStrategy = require('passport-local').Strategy
+const flash = require('connect-flash')
 
-
+router.use(flash())
 router.use(session({
     secret: 'secretkey',
     resave: true,
@@ -17,6 +18,7 @@ router.use(session({
 
 router.use(passport.initialize())
 router.use(passport.session())
+
 
 passport.serializeUser((user, done) => {
     done(null, user.id)
@@ -28,26 +30,41 @@ passport.deserializeUser((id, done) => {
     })
 })
 
-passport.use(new localStrategy({usernameField: 'email'}, (email, password, done) => {
+passport.use(new localStrategy({usernameField: 'email', passReqToCallback: true}, (req, email, password, done) => {
     User.findOne({email: email}, (err, user) => {
         if(err) return done(err)
         if(!user) {
-            return done(null, false, {message: 'Email not found'})
+            return done(null, false, req.flash('error', 'User not found'))
         }
 
         bcrypt.compare(password, user.password, (err, res) => {
             if(err) return done(err)
-            if(res === false) return done(null, false,{ message: 'Wrong password'})
+            if(res === false) return done(null, false, req.flash('error', 'Password incorrect'))
             return done(null, user)
         })
     })
 }))
+// passport.use(new localStrategy({usernameField: 'email'}, (email, password, done) => {
+//     User.findOne({email: email}, (err, user) => {
+//         if(err) return done(err)
+//         if(!user) {
+//             return done(null, false, {message: 'Email not found'})
+//         }
+
+//         bcrypt.compare(password, user.password, (err, res) => {
+//             if(err) return done(err)
+//             if(res === false) return done(null, false,{ message: 'Wrong password'})
+//             return done(null, user)
+//         })
+//     })
+// }))
 
 function isLoggedIn(req, res, next) {
     if(req.user) {
         // console.log(req.user.id)
     }
     if (req.isAuthenticated()) return next()
+    req.flash('error', 'Please login')
     res.redirect('/user/login')
 }
 
@@ -61,24 +78,25 @@ router.get('/dashboard', isLoggedIn, (req, res) => {
     Property.find({seller: req.user.id})
     .populate('seller')
     .then(properties => {
-        console.log(properties)
         res.render('dashboard', {properties})
     })
 })
 
 router.get('/login', (req, res) => {
-    res.render('login')
+    const errors = req.flash().error || []
+    res.render('login', { errors })
 })
 
-router.post('/login', passport.authenticate('local', {
-    successRedirect: '/user/dashboard',
-    failureRedirect: '/user/login?error=true'
-}))
-// router.post('/login', (req, res, next) => { passport.authenticate('local', {
+// router.post('/login', passport.authenticate('local', {
 //     successRedirect: '/user/dashboard',
-//     failureRedirect: '/user/login?error=true',
-//     failureFlash: true
-// })(req, res, next))
+//     failureRedirect: '/user/login?error=true'
+// }))
+router.post('/login', (req, res, next) => { 
+    passport.authenticate('local', {
+    successRedirect: '/user/dashboard',
+    failureRedirect: '/user/login?error=true',
+    failureFlash: true,
+})(req, res, next)})
 
 router.get('/register', (req, res, next) => {
     res.render('register')

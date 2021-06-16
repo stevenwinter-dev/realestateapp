@@ -31,8 +31,17 @@ const newUserBtn = document.querySelector('#create-user')
 const newUserForm = document.querySelector('#new-user-form')
 const favoriteBtn = document.querySelectorAll('.favorite-btn')
 const img = document.querySelector('#decode-img')
+const flashMsg = document.querySelector('.flash-message')
 
+function flashMsgRemove() {
+  if(flashMsg) {
+    setTimeout(() => {
+      flashMsg.remove()
+    },3000)
+  }
+}
 
+flashMsgRemove()
 
 if(newBtn) {
   newBtn.addEventListener('click', newHandler)

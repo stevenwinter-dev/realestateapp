@@ -1,5 +1,8 @@
 <main>
-
+<% for (let i=0; i<errors.length; i++) { %>
+  <% console.log(errors[i]) %>
+  <p class='flash-message red accent-3'><%= errors[i] %></p>
+<% } %>
   <form action="/user/login" method='post'>
     <div>
       <h1>Login</h1>
