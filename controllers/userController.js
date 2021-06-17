@@ -1,3 +1,4 @@
+require('dotenv').config()
 const express = require('express')
 const Property = require('../models/property')
 const router = express.Router()
@@ -8,6 +9,17 @@ const session = require('express-session')
 const passport = require('passport')
 const localStrategy = require('passport-local').Strategy
 const flash = require('connect-flash')
+const nodemailer = require('nodemailer');
+const smtpTransport = require('nodemailer-smtp-transport')
+
+let transporter = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD
+    }
+}))
 
 router.use(flash())
 router.use(session({
@@ -118,11 +130,28 @@ router.post('/register', (req, res, next) => {
                 email: req.body.email,
                 password: hash
             })
-            .then(user => res.render('login'))
+            .then(user => res.render('login', {errors: err}))
             .catch(next)
         });
     });
     
+    
+    
+    let mailOptions = {
+        from: 'realestateappproject2@gmail.com',
+        to: req.body.email,
+        subject: 'Welcome to the Real Estate App',
+        text: 'Thanks for joining!'
+    }
+    
+    transporter.sendMail(mailOptions, (err, data) => {
+        if(err) {
+            console.log('Error', err)
+        } else {
+            console.log('Email sent')
+        }
+    })
+
 })
 
 router.put('/:id', (req, res) => {

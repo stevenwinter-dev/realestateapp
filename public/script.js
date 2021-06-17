@@ -21,8 +21,7 @@ document.addEventListener('DOMContentLoaded', function() {
   var instances = M.Carousel.init(elems, {indicators: true});
 });
 
-const deleteBtn = document.querySelector('#delete')
-const deleteForm = document.querySelector('#form-delete')
+const deleteBtn = document.querySelectorAll('.delete-btn')
 const editBtn = document.querySelector('#edit')
 const editForm = document.querySelector('#edit-form')
 const newBtn = document.querySelector('#create')
@@ -32,6 +31,8 @@ const newUserForm = document.querySelector('#new-user-form')
 const favoriteBtn = document.querySelectorAll('.favorite-btn')
 const img = document.querySelector('#decode-img')
 const flashMsg = document.querySelector('.flash-message')
+const loginBtn = document.querySelector('#login-btn')
+const loginForm = document.querySelector('#login-form')
 
 function flashMsgRemove() {
   if(flashMsg) {
@@ -47,12 +48,16 @@ if(newBtn) {
   newBtn.addEventListener('click', newHandler)
 }
 
+if(loginBtn) {
+  loginBtn.addEventListener('click', loginHandler)
+}
+
 if(editBtn) {
   editBtn.addEventListener('click', editHandler)
 }
 
 if(deleteBtn) {
-  deleteBtn.addEventListener('click', deleteHandler)
+  deleteBtn.forEach(btn => btn.addEventListener('click', deleteHandler))
 }
 
 if(newUserBtn) {
@@ -72,6 +77,10 @@ function newHandler() {
   newForm.submit()
 }
 
+function loginHandler() {
+  loginForm.submit()
+}
+
 function newUserHandler() {
   newUserForm.submit()
 }
@@ -80,6 +89,9 @@ function editHandler() {
   editForm.submit()
 }
 
-function deleteHandler() {
+function deleteHandler(e) {
+  const deleteForm = e.target.parentElement
+  console.log(deleteForm)
+  console.log('hiiii')
   deleteForm.submit()
 }

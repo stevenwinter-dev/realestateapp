@@ -1,27 +1,29 @@
 <main>
-<% for (let i=0; i<errors.length; i++) { %>
-  <% console.log(errors[i]) %>
-  <p class='flash-message red accent-3'><%= errors[i] %></p>
-<% } %>
-  <form action="/user/login" method='post'>
-    <div>
-      <h1>Login</h1>
-    </div>
-    <div>
+ <% if(errors != undefined) { %>
+    <% for (let i=0; i<errors.length; i++) { %>
+      <% console.log(errors[i]) %>
+      <p class='flash-message red accent-3'><%= errors[i] %></p>
+    <% } %>
+  <% } %>
+
+<div>
+  <h1>Login</h1>
+</div>
+  <form action="/user/login" method='post' id='login-form'>
+    <div class="row">
+    <div class="input-field col s12">
       <label for="email">Email:</label>
-      <input type="text" name='email' id='email' placeholder='Enter your email' required>
+      <input type="text" name='email' id='email' placeholder='Enter your email' required class='validate'>
     </div>
-    <div>
+  </div>
+  <div class="row">
+    <div class="input-field col s12">
       <label for="password">Password:</label>
-      <input type="password" name='password' id='password' placeholder="Enter your passsword" required>
+      <input type="password" name='password' id='password' placeholder="Enter your passsword" required class='validate'>
     </div>
-    <div>
-      <input type="submit" value='Login'>
+  </div>
+    <div class="modal-footer">
+      <a class="waves-effect waves-light btn green accent-3" id='login-btn'>Login</a>
     </div>
   </form>
-
-
-
-
-        
 </main>

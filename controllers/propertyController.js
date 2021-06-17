@@ -5,6 +5,17 @@ const multer  = require('multer')
 const User = require('../models/user')
 const storage = multer.memoryStorage()
 const uploads = multer({ storage: storage })
+const nodemailer = require('nodemailer');
+const smtpTransport = require('nodemailer-smtp-transport')
+
+let transporter = nodemailer.createTransport(smtpTransport({
+    service: 'gmail',
+    host: 'smtp.gmail.com',
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PASSWORD
+    }
+}))
 
 // const storage = multer.diskStorage({
 //     destination: (req, file, cb) => {
@@ -78,7 +89,22 @@ router.post('/favorites', isLoggedIn, (req, res, next) => {
             .catch(next)
         )
     .catch(next)
-} )
+
+    let mailOptions = {
+        from: 'realestateappproject2@gmail.com',
+        to: req.user.email,
+        subject: 'Favorite Property Added!',
+        text: 'You added a favorite! localhost:3000/property/' + req.body.id
+    }
+    
+    transporter.sendMail(mailOptions, (err, data) => {
+        if(err) {
+            console.log('Error', err)
+        } else {
+            console.log('Email sent')
+        }
+    })
+})
 
 //NEW
 router.get('/new', (req, res, next) => {
@@ -128,6 +154,13 @@ router.post('/upload', upload.single('image'), (req, res, next) => {
 router.post('/', upload.single('img'), (req, res, next) => {
     // console.log(req.body)
     console.log(req.file)
+    let uploadImg
+    if(req.file != undefined) {
+        uploadImg = {
+            data: req.file.buffer,
+            contentType: req.file.mimetype
+        }
+    }
     //image: {data: req.file.buffer, contentType: req.file.mimetype}
     Property.create({
         seller: req.body.seller,
@@ -139,7 +172,7 @@ router.post('/', upload.single('img'), (req, res, next) => {
         bedrooms: req.body.bedrooms,
         baths: req.body.baths,
         imgURL: req.body.imgURL,
-        img: {data: req.file.buffer, contentType: req.file.mimetype},
+        img: uploadImg,
         description: req.body.description
     })
     .then(property => {
@@ -154,6 +187,14 @@ router.put('/:id', upload.single('img'), (req, res) => {
     console.log(req.body)
     console.log(`this is the id ${req.params.id}`)  
     const id = req.params.id
+    let updateImg
+    if(req.file != undefined) {
+        updateImg = {
+            data: req.file.buffer,
+            contentType: req.file.mimetype
+        }
+    }
+
     Property.findOneAndUpdate(
         {_id: id},
         {
@@ -166,7 +207,7 @@ router.put('/:id', upload.single('img'), (req, res) => {
             bedrooms: req.body.bedrooms,
             baths: req.body.baths,
             imgURL: req.body.imgURL,
-            img: {data: req.file.buffer, contentType: req.file.mimetype},
+            img: updateImg,
             description: req.body.description
         },
         { new: true },
