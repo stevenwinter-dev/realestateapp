@@ -85,7 +85,7 @@ router.post('/favorites', isLoggedIn, (req, res, next) => {
         .then(
             Property.find({})
             .populate('seller')
-            .then(property => res.render('index', {property}))
+            .then(property => res.redirect('../user/dashboard'))
             .catch(next)
         )
     .catch(next)
@@ -94,7 +94,10 @@ router.post('/favorites', isLoggedIn, (req, res, next) => {
         from: 'realestateappproject2@gmail.com',
         to: req.user.email,
         subject: 'Favorite Property Added!',
-        text: 'You added a favorite! localhost:3000/property/' + req.body.id
+        html:
+        '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;">You added a favorite property!</h2>' 
+        + '<a href=http://localhost:3000/property/ style="color:white;"' 
+        + req.body.id + '>Check it out!</a>' + '</div>' + '</body>'
     }
     
     transporter.sendMail(mailOptions, (err, data) => {
@@ -106,9 +109,21 @@ router.post('/favorites', isLoggedIn, (req, res, next) => {
     })
 })
 
+//REMOVE FAVORITE
+router.put('/favorites', isLoggedIn, (req, res) => {
+    const userId = req.user.id
+    const favId = req.params.id
+    User.findByIdAndUpdate(userId, {
+        $pull: { favorites: [favId] } }
+    )
+        .then(property => res.render('dashboard', {property}))
+        .catch(console.error)
+})
+
 //NEW
-router.get('/new', (req, res, next) => {
-    res.render('new')
+router.get('/new', isLoggedIn, (req, res, next) => {
+    const userId = req.user.id
+    res.render('new', {userId})
 })
 
 //SHOW ONE
@@ -151,7 +166,7 @@ router.post('/upload', upload.single('image'), (req, res, next) => {
 
 
 //CREATE
-router.post('/', upload.single('img'), (req, res, next) => {
+router.post('/', upload.single('img'), isLoggedIn, (req, res, next) => {
     // console.log(req.body)
     console.log(req.file)
     let uploadImg
@@ -176,10 +191,29 @@ router.post('/', upload.single('img'), (req, res, next) => {
         description: req.body.description
     })
     .then(property => {
-        console.log(property)
+        console.log(property.id)
         res.render('property', {property})
     })
     .catch(next)
+
+    let mailOptions = {
+        from: 'realestateappproject2@gmail.com',
+        to: req.user.email,
+        subject: 'You listed a property!',
+        html:
+        '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;">You added a listing!</h2>' 
+        + '<a href=http://localhost:3000/user/dashboard style="color:white;"' 
+        + '>View your listings!</a>' + '</div>' + '</body>'
+    }
+    
+    transporter.sendMail(mailOptions, (err, data) => {
+        if(err) {
+            console.log('Error', err)
+        } else {
+            console.log('Email sent')
+        }
+    })
+
 })
 
 //UPDATE
@@ -227,14 +261,32 @@ router.put('/:id', upload.single('img'), (req, res) => {
 //     .catch(next)
 // })
 
-router.delete('/:id', (req, res, next) => {
+router.delete('/:id', isLoggedIn, (req, res, next) => {
     const id = req.params.id
     Property.findOneAndDelete({_id: id})
     .then(() => {
         Property.find({})
-        .then(properties => res.render('dashboard', {properties}))
+        .then(properties => res.redirect('../user/dashboard'))
     })
     .catch(next)
+
+    let mailOptions = {
+        from: 'realestateappproject2@gmail.com',
+        to: req.user.email,
+        subject: 'You deleted a property!',
+        html:
+        '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;">You deleted a listing!</h2>' 
+        + '<a href=http://localhost:3000/user/dashboard style="color:white;"' 
+        + '>Add a new property!</a>' + '</div>' + '</body>'
+    }
+    
+    transporter.sendMail(mailOptions, (err, data) => {
+        if(err) {
+            console.log('Error', err)
+        } else {
+            console.log('Email sent')
+        }
+    })
 })
 
 //WORKING ON DELETE

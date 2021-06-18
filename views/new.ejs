@@ -2,7 +2,8 @@
     <div class='index-bg show_bg_2'>
         <h1>Real Estate Finder</h1>
     </div>
-                
+
+    <% console.log(`INSIDE NEW ROUTE ${userId}`) %>
 
         <h2 class='grey-text darken-4'>Create New Listing:</h2>
         <!-- enctype="multipart/form-data" -->
@@ -10,8 +11,7 @@
 
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="seller" type="text" name='seller' class="validate">
-                    <label for="seller">Seller</label>
+                    <input id="seller" type="hidden" name='seller' class="validate" value='<%=userId%>'>
                 </div>
             </div>
             <div class="row">

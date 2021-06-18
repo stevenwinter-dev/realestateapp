@@ -123,7 +123,6 @@ router.get('/:id', (req, res) => {
 })
 
 router.post('/register', (req, res, next) => {
-    console.log(req.body.email)
     bcrypt.genSalt(salt, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
             User.create({
@@ -141,7 +140,10 @@ router.post('/register', (req, res, next) => {
         from: 'realestateappproject2@gmail.com',
         to: req.body.email,
         subject: 'Welcome to the Real Estate App',
-        text: 'Thanks for joining!'
+        html:
+        '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;">Thanks for joining!</h2>' 
+        + '<a href=http://localhost:3000/ style="color:white;"' 
+        + '>Visit the Real Estate App</a>' + '</div>' + '</body>'
     }
     
     transporter.sendMail(mailOptions, (err, data) => {

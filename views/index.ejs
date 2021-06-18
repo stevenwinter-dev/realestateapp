@@ -1,11 +1,22 @@
 <main>
-    <div class='index-bg show_bg_2'>
-        <h1>Real Estate Finder</h1>
+    <!-- <div class="parallax-container">
+        <div class="parallax"><img src="https://images.unsplash.com/photo-1568634500241-7fd96820b224?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80"></div>
+        <div class=' show_bg_2'>
+            <h1>Real Estate Finder</h1>
+        </div>
+    </div> -->
+    <section class='index-header'>
+    <div class='index-h1-img-container'>
+        <h1>Find the best real estate in your area for a good price</h1>
+        <img src="./images/modernhouse.jpeg" alt="home" class='index-home'>
     </div>
+    <h2>Buy your dream home today</h2>
+</section>
     <div class="card-container">
     <% property.forEach(property => { %>
-        <div class='card light-blue darken-4 z-depth-3 stock-card'>
-            <div class="card-content white-text">
+        <div class='card cyan lighten-4 z-depth-4 stock-card'>
+        <!-- <div class='card light-blue darken-4 z-depth-3 stock-card'> -->
+            <div class="card-content">
                 <h3 class='card-title'>$<%= property.price %></h3>
                 <div class='property-content'>
                     <% if(property.img.data) { %>
@@ -25,9 +36,9 @@
                         <p><%= property.baths %> baths</p>
                         <p><%= property.seller.email %></p>
                         <div class='btn-container'>
-                            <a class="waves-effect waves-light btn" href="/property/<%=property.id%>">Check it out!</a>
+                            <a class="waves-effect waves-light btn green accent-3 view-btn" href="/property/<%=property.id%>">Check it out!</a>
                             <form action="/property/favorites" method="POST" class='favorite-form' id='<%= property.id %>'>
-                                <input type="hidden" name='id' value='<%=property.id%>'><a class="waves-effect waves-light btn-floating btn-large waves-effect waves-light purple accent-2 favorite-btn"><i class="material-icons" data-id='<%= property.id %>'>bookmark_border</i></a></input>
+                                <input type="hidden" name='id' value='<%=property.id%>'><a class="waves-effect waves-light btn-floating btn-large waves-effect waves-light black favorite-btn"><i class="material-icons" data-id='<%= property.id %>'>bookmark_border</i></a></input>
                             </form>
                         </div>    
                     </div>

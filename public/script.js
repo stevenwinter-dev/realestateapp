@@ -21,6 +21,11 @@ document.addEventListener('DOMContentLoaded', function() {
   var instances = M.Carousel.init(elems, {indicators: true});
 });
 
+document.addEventListener('DOMContentLoaded', function() {
+  var elems = document.querySelectorAll('.parallax');
+  var instances = M.Parallax.init(elems, {});
+});
+
 const deleteBtn = document.querySelectorAll('.delete-btn')
 const editBtn = document.querySelector('#edit')
 const editForm = document.querySelector('#edit-form')
@@ -33,6 +38,7 @@ const img = document.querySelector('#decode-img')
 const flashMsg = document.querySelector('.flash-message')
 const loginBtn = document.querySelector('#login-btn')
 const loginForm = document.querySelector('#login-form')
+const deleteFavBtn = document.querySelectorAll('.delete-fav-btn')
 
 function flashMsgRemove() {
   if(flashMsg) {
@@ -43,6 +49,10 @@ function flashMsgRemove() {
 }
 
 flashMsgRemove()
+
+if(deleteFavBtn) {
+  deleteFavBtn.forEach(btn => btn.addEventListener('click', deleteFavBtnHandler))
+}
 
 if(newBtn) {
   newBtn.addEventListener('click', newHandler)
@@ -66,6 +76,11 @@ if(newUserBtn) {
 
 if(favoriteBtn) {
   favoriteBtn.forEach(btn => btn.addEventListener('click', favoriteHandler))
+}
+
+function deleteFavBtnHandler(e) {
+  const form = e.target.parentElement
+  form.submit()
 }
 
 function favoriteHandler(e) {
