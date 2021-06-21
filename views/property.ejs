@@ -8,7 +8,6 @@
             <div class="card-content white-text">
                 <h3 class='card-title'>$<%= property.price %></h3>
                 <div class='property-content'>
-                    
                     <% if(property.img.data) { %>
                         <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>">
                     <% } %>
@@ -24,7 +23,9 @@
                         </div>
                         <p><%= property.bedrooms %> bedrooms</p>
                         <p><%= property.baths %> baths</p>
-                        <p><%= property.seller.email %></p>
+                        <%if(property.seller) { %>
+                            <p><%= property.seller.email %></p>
+                       <% } %>
                         <p class='flow-text'><%= property.description %></p>
                     </div>
                 </div>

@@ -1,8 +1,7 @@
 <% users.forEach(user => { %>
-    <h2>User ID: <%=user._id%></h2>
+    <h2><%=user.name%></h2>
+    <h3><%= user.email %></h3>
+    <p>User ID: <%=user._id%></p>
     <a href="/user/<%=user._id%>">check out listings</a>
-   <h3><%= user.email %></h3>
-   <h3><%= user.password %></h3>
-   <h3><%= user.listings %></h3>
   <% console.log(user) %>
 <%}) %>

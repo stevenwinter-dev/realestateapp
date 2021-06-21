@@ -65,10 +65,11 @@ router.post('/upload', upload.single('image'), (req, res, next) => {
 
 //SHOW ALL
 router.get('/', (req, res, next) => {
-    console.log(`properties user logged in? ${req.user}`)
+    // console.log(`properties user logged in? ${req.user}`)
+    // console.log(`USER: ${req.user}`)
     Property.find({})
     .populate('seller')
-    .then(property => res.render('index', {property}))
+    .then(property => res.render('index', {property, user: req.user}))
     .catch(next)
 })
 
@@ -85,7 +86,8 @@ router.post('/favorites', isLoggedIn, (req, res, next) => {
         .then(
             Property.find({})
             .populate('seller')
-            .then(property => res.redirect('../user/dashboard'))
+            // .then(property => res.redirect('../user/dashboard'))
+            .then(property => res.render('index', {property, user: req.user}))
             .catch(next)
         )
     .catch(next)
@@ -110,14 +112,18 @@ router.post('/favorites', isLoggedIn, (req, res, next) => {
 })
 
 //REMOVE FAVORITE
-router.put('/favorites', isLoggedIn, (req, res) => {
+router.put('/favorite/:id', isLoggedIn, (req, res) => {
     const userId = req.user.id
     const favId = req.params.id
     User.findByIdAndUpdate(userId, {
-        $pull: { favorites: [favId] } }
+        $pull: { favorites: favId } }
     )
-        .then(property => res.render('dashboard', {property}))
-        .catch(console.error)
+    .then(Property.find({seller: req.user.id})
+    .populate('seller')
+    .then(() => {
+        Property.find({})
+        .then(properties => res.redirect('../../user/dashboard'))
+    }))
 })
 
 //NEW

@@ -126,6 +126,7 @@ router.post('/register', (req, res, next) => {
     bcrypt.genSalt(salt, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
             User.create({
+                name: req.body.name,
                 email: req.body.email,
                 password: hash
             })
@@ -153,7 +154,6 @@ router.post('/register', (req, res, next) => {
             console.log('Email sent')
         }
     })
-
 })
 
 router.put('/:id', (req, res) => {

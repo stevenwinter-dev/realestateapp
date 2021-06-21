@@ -146,7 +146,7 @@
             <% properties.forEach(prop => { %>
                 <% prop.seller.favorites.forEach(fav => { %>
                     <p>House ID: <a href="/property/<%=fav%>"><%=fav%></a></p>
-                    <form action="/property/<%=fav%>?_method=PUT" method="POST" class='form-button form-delete-favorite'>
+                    <form action="/property/favorite/<%=fav%>?_method=PUT" method="POST" class='form-button form-delete-favorite'>
                         <a class="waves-effect waves-light btn red accent-3 delete-fav-btn" >Remove favorite</a>
                     </form>
                <% }) %>

@@ -11,7 +11,8 @@ const PropertySchema = new mongoose.Schema({
     baths: { type: Number, required: true },
     imgURL: { type: String },
     img: {data: Buffer, contentType: String},
-    description: String
+    description: String,
+    listedDate: { type: Date, default: Date.now }
 }, { timestamps: true })
 
 const Property = mongoose.model('Property', PropertySchema)

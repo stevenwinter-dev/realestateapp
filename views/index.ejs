@@ -18,12 +18,13 @@
         <!-- <div class='card light-blue darken-4 z-depth-3 stock-card'> -->
             <div class="card-content">
                 <h3 class='card-title'>$<%= property.price %></h3>
+                <p class='property-listedDate'>Listed 10 days ago</p>
                 <div class='property-content'>
                     <% if(property.img.data) { %>
                         <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>">
                     <% } %>
                     <% if(property.imgURL) { %>
-                        <img src="<%=property.imgURL%>">
+                        <img src="<%=property.imgURL%>" class='card-image'>
                     <% } %>
                     <div>
                         <div class='property-address'>
@@ -34,11 +35,28 @@
                         </div>
                         <p><%= property.bedrooms %> bedrooms</p>
                         <p><%= property.baths %> baths</p>
-                        <p><%= property.seller.email %></p>
+                        <%if(property.seller) { %>
+                            <p><%= property.seller.email %></p>
+                       <% } %>
+                        
                         <div class='btn-container'>
                             <a class="waves-effect waves-light btn green accent-3 view-btn" href="/property/<%=property.id%>">Check it out!</a>
                             <form action="/property/favorites" method="POST" class='favorite-form' id='<%= property.id %>'>
-                                <input type="hidden" name='id' value='<%=property.id%>'><a class="waves-effect waves-light btn-floating btn-large waves-effect waves-light black favorite-btn"><i class="material-icons" data-id='<%= property.id %>'>bookmark_border</i></a></input>
+                                <input type="hidden" name='id' value='<%=property.id%>' class='favorite'>
+                                <a class="waves-effect waves-light btn-floating btn-large waves-effect waves-light favorite-btn
+                                <% if(user) {user.favorites.forEach(fav => { %>
+                                    <% if(fav == property.id) { %>
+                                        <%= 'red' %>
+                                    <% } %>
+                                <% })} %>
+                                ">
+                                
+                                    <i class="material-icons" data-id='<%= property.id %>'>favorite_border</i>
+                                </a>
+                                
+                  
+                                 
+                                 
                             </form>
                         </div>    
                     </div>
@@ -48,3 +66,4 @@
     <% }) %>
     </div>
 </main>
+

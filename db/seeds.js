@@ -5,7 +5,7 @@ const seedData = require('./seeds.json')
 Property.deleteMany({})
   .then(() => Users.deleteMany({}))
   .then(() => {
-    return Users.create({email: 'fake@email.net', password: 'Password123'})
+    return Users.create({name: 'Fake Name', email: 'fake@email.net', password: 'Password123'})
 
   .then(user => seedData.map(property => ({...property, seller: user._id})))
   .then(bookmarks => Property.insertMany(bookmarks))

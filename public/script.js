@@ -26,12 +26,15 @@ document.addEventListener('DOMContentLoaded', function() {
   var instances = M.Parallax.init(elems, {});
 });
 
+const main = document.querySelector('main')
 const deleteBtn = document.querySelectorAll('.delete-btn')
 const editBtn = document.querySelector('#edit')
 const editForm = document.querySelector('#edit-form')
 const newBtn = document.querySelector('#create')
 const newForm = document.querySelector('#new-form')
 const newUserBtn = document.querySelector('#create-user')
+const password = document.querySelector('#password')
+const confirmPassword = document.querySelector('#confirmPassword')
 const newUserForm = document.querySelector('#new-user-form')
 const favoriteBtn = document.querySelectorAll('.favorite-btn')
 const img = document.querySelector('#decode-img')
@@ -97,7 +100,22 @@ function loginHandler() {
 }
 
 function newUserHandler() {
-  newUserForm.submit()
+  console.log(password.value)
+  console.log(confirmPassword.value)
+  if(password.value === confirmPassword.value) {
+    newUserForm.submit()
+  } else {
+    const error = document.createElement('p')
+    error.innerHTML = `Incorrect password`
+    error.classList.add('flash-message')
+    error.classList.add('red')
+    error.classList.add('accent-3')
+    main.append(error)
+      setTimeout(() => {
+        error.remove()
+      },3000)
+    }
+  
 }
 
 function editHandler() {
