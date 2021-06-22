@@ -174,7 +174,11 @@ router.post('/upload', upload.single('image'), (req, res, next) => {
 //CREATE
 router.post('/', upload.single('img'), isLoggedIn, (req, res, next) => {
     // console.log(req.body)
-    console.log(req.file)
+    let imgURLArray
+    if(req.body.imgURL) {
+        console.log(req.body.imgURL)
+        imgURLArray = req.body.imgURL.split(' ')
+    }
     let uploadImg
     if(req.file != undefined) {
         uploadImg = {
@@ -192,7 +196,7 @@ router.post('/', upload.single('img'), isLoggedIn, (req, res, next) => {
         zip: req.body.zip,
         bedrooms: req.body.bedrooms,
         baths: req.body.baths,
-        imgURL: req.body.imgURL,
+        imgURL: imgURLArray,
         img: uploadImg,
         description: req.body.description
     })
