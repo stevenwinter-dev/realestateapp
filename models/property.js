@@ -9,7 +9,7 @@ const PropertySchema = new mongoose.Schema({
     zip: { type: Number, required: true },
     bedrooms: { type: Number, required: true },
     baths: { type: Number, required: true },
-    imgURL: { type: String },
+    imgURL: [{ type: String }],
     img: {data: Buffer, contentType: String},
     description: String,
     listedDate: { type: Date, default: Date.now }

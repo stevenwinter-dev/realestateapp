@@ -5,7 +5,7 @@ const UserSchema = new mongoose.Schema({
     email: { type: String, unique: true, required: true },
     password: { type: String, required: true },
     listings: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Property' }],
-    favorites: [String]
+    favorites: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Property' }]
 }, { timestamps: true })
 
 UserSchema.path('email').validate(async (email) => {

@@ -90,7 +90,12 @@ router.get('/dashboard', isLoggedIn, (req, res) => {
     Property.find({seller: req.user.id})
     .populate('seller')
     .then(properties => {
-        res.render('dashboard', {properties})
+        User.findById(req.user.id)
+        .populate('favorites')
+        .then(favorites => {
+            res.render('dashboard', {properties: properties, favorites: favorites})
+        })
+        
     })
 })
 

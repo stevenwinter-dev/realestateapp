@@ -24,7 +24,10 @@
                         <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>">
                     <% } %>
                     <% if(property.imgURL) { %>
-                        <img src="<%=property.imgURL%>" class='card-image'>
+                        <%property.imgURL.forEach(url => { %>
+                            <img src="<%=url%>" class='card-image'>
+                       <% }) %>
+                        
                     <% } %>
                     <div>
                         <div class='property-address'>

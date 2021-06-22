@@ -6,12 +6,11 @@
             <li class="tab col s3"><a href="#test1" class="active ">View your listings</a></li>
             <li class="tab col s3"><a href="#test2">View your favorites</a></li>
           </ul>
-          <a class="col s4 offset-s4 waves-effect waves-light btn green accent-3" href='/property/new' >Add new listing</a>
+          
         </div>
-        
-        
         <% if(properties) { %>
             <div class="card-container col s12" id="test1">
+                <a class="col s4 offset-s4 waves-effect waves-light btn green accent-3" href='/property/new' >Add new listing</a>
                 <% properties.forEach(property => { %>
                     <div class='card light-blue darken-4 z-depth-3 stock-card'>
                         <div class="card-content white-text">
@@ -23,12 +22,7 @@
                                     <a class="carousel-item" href="#two!"><img src="<%=property.imgURL%>" class='responsive-img'></a>                                   
                                   </div>
 
-                                <!-- <% if(property.img.data) { %>
-                                    <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>">
-                                <% } %>
-                                <% if(property.imgURL) { %>
-                                    <img src="<%=property.imgURL%>">
-                                <% } %> -->
+
                                 <div>
                                     <div class='property-address'>
                                         <p><%= property.address %> |</p>
@@ -143,14 +137,39 @@
 
 
         <div id="test2" class="col s12">
-            <% properties.forEach(prop => { %>
-                <% prop.seller.favorites.forEach(fav => { %>
-                    <p>House ID: <a href="/property/<%=fav%>"><%=fav%></a></p>
-                    <form action="/property/favorite/<%=fav%>?_method=PUT" method="POST" class='form-button form-delete-favorite'>
-                        <a class="waves-effect waves-light btn red accent-3 delete-fav-btn" >Remove favorite</a>
-                    </form>
-               <% }) %>
-           <% }) %>
+            <% favorites.favorites.forEach(fav => { %>
+                <div class='card light-blue darken-4 z-depth-3 stock-card'>
+                    <div class="card-content white-text">
+                        <h3 class='card-title'>$<%= fav.price %></h3>
+                        <div class='property-content'>
+                            <% if(fav.imgURL) { %>
+                                <%fav.imgURL.forEach(url => { %>
+                                    <img src="<%=url%>" class='card-image'>
+                               <% }) %>
+                                
+                            <% } %>
+                            <div>
+                                <div class='property-address'>
+                                    <p><%= fav.address %> |</p>
+                                    <p><%= fav.city %> |</p>
+                                    <p><%= fav.state %> |</p>
+                                    <p><%= fav.zip %></p>
+                                </div>
+                                <p><%= fav.bedrooms %> bedrooms</p>
+                                <p><%= fav.baths %> baths</p>
+                            </div>  
+                            <a href='/property/<%=fav.id%>' class="waves-effect waves-light btn blue accent-3 visit-fav-btn" >View Listing</a>
+                            <form action="/property/favorite/<%=fav.id%>?_method=PUT" method="POST" class='form-button form-delete-favorite'>
+                                <a class="waves-effect waves-light btn red accent-3 delete-fav-btn" >Remove favorite</a>
+                            </form>             
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+            
+                  
+                  
         </div>
       </div>
 </main>
+
