@@ -12,6 +12,7 @@ const flash = require('connect-flash')
 const nodemailer = require('nodemailer');
 const smtpTransport = require('nodemailer-smtp-transport')
 
+
 let transporter = nodemailer.createTransport(smtpTransport({
     service: 'gmail',
     host: 'smtp.gmail.com',
@@ -119,14 +120,6 @@ router.get('/register', (req, res, next) => {
     res.render('register')
 })
 
-router.get('/:id', (req, res) => {
-    const id = req.params.id
-    // User.findById(id)
-    Property.find({seller: id})
-    .populate('seller')
-    .then(property => res.render('user', {property}))
-})
-
 router.post('/register', (req, res, next) => {
     bcrypt.genSalt(salt, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
@@ -161,19 +154,65 @@ router.post('/register', (req, res, next) => {
     })
 })
 
-router.put('/:id', (req, res) => {
-    const id = req.params.id
-    User.findOneAndUpdate(
-        {_id: id},
-        {
-            email: req.body.email,
-            password: req.body.password
-        },
-        { new: true },
-        )
-        .then(user => res.render('users', {user}))
-        .catch(console.error)
+
+
+// router.put('/:id', (req, res) => {
+//     const id = req.params.id
+//     User.findOneAndUpdate(
+//         {_id: id},
+//         {
+//             email: req.body.email,
+//             password: req.body.password
+//         },
+//         { new: true },
+//         )
+//         .then(user => res.render('users', {user}))
+//         .catch(console.error)
+// })
+
+
+
+
+//RESET PASSWORD
+router.put('/password/:email', (req, res) => {
+
+    console.log(req.body)
+    bcrypt.genSalt(salt, (err, salt) => {
+        bcrypt.hash(req.body.password, salt, (err, hash) => {
+            User.findOneAndUpdate(
+                {_id: req.body._id},
+                {
+
+                    password: hash
+                },
+                { new: true },
+                )
+            .then(user => res.redirect('../login'))
+            .catch(console.error)
+        })
+    })
 })
+
+router.get('/password/:email', (req, res) => {
+    const email = req.params.email + '.com'
+console.log(email)
+    User.findOne({email})
+    .then(user => res.render('pwreset', {user}))
+    
+})
+
+
+// router.get('/:id', (req, res) => {
+//     const id = req.params.id
+//     // User.findById(id)
+//     Property.find({seller: id})
+//     .populate('seller')
+//     .then(property => res.render('user', {property}))
+// })
+
+
+
+
 
 router.delete('/', (req, res) => {
     const id = req.params.id

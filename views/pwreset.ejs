@@ -1,0 +1,43 @@
+<main>
+<% console.log(user._id) %>
+    <div class="row form-flex">
+      <div class="col s12 m6">
+        <div class="card white">
+          <div class="card-content black-text">
+            <span class="card-title">Change Password for </span>
+      
+            <form action="/user/password/<%=user.email%>?_method=put" method="POST" id='change-pw-form'>
+              <div class="row">
+                  <div class="input-field col s12">
+                      <input id="password" type="password" name='password' class="validate">
+                      <label for='password'>Password</label>
+                  </div>
+              </div>
+              <div class="row">
+                  <div class="input-field col s12">
+                      <input id="confirmPassword" type="password" name='confirmPassword' class="validate">
+                      <label for='confirmPassword'>Confirm Password</label>
+                  </div>
+              </div>
+              <input type="hidden" name='_id' value='<%=user._id%>'>
+          </form>
+      <div class="modal-footer">
+          <a class="waves-effect waves-light btn green accent-3" id='change-pw'>Change</a>
+      </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+  <script>
+    const changePwForm = document.querySelector('#change-pw-form')
+const changePwBtn = document.querySelector('#change-pw')
+if(changePwBtn) {
+  changePwBtn.addEventListener('click', changePwBtnHandler)
+}
+
+function changePwBtnHandler() {
+  changePwForm.submit()
+}
+  </script>

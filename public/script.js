@@ -42,6 +42,8 @@ const flashMsg = document.querySelector('.flash-message')
 const loginBtn = document.querySelector('#login-btn')
 const loginForm = document.querySelector('#login-form')
 const deleteFavBtn = document.querySelectorAll('.delete-fav-btn')
+const changePwForm = document.querySelector('#change-pw-form')
+const changePwBtn = document.querySelector('#change-pw')
 
 function flashMsgRemove() {
   if(flashMsg) {
@@ -52,6 +54,10 @@ function flashMsgRemove() {
 }
 
 flashMsgRemove()
+
+if(changePwBtn) {
+  changePwBtn.addEventListener('click', changePwBtnHandler)
+}
 
 if(deleteFavBtn) {
   deleteFavBtn.forEach(btn => btn.addEventListener('click', deleteFavBtnHandler))
@@ -79,6 +85,10 @@ if(newUserBtn) {
 
 if(favoriteBtn) {
   favoriteBtn.forEach(btn => btn.addEventListener('click', favoriteHandler))
+}
+
+function changePwBtnHandler() {
+  changePwForm.submit()
 }
 
 function deleteFavBtnHandler(e) {
@@ -125,6 +135,7 @@ function editHandler() {
 function deleteHandler(e) {
   const deleteForm = e.target.parentElement
   console.log(deleteForm)
-  console.log('hiiii')
   deleteForm.submit()
 }
+
+

@@ -17,11 +17,16 @@
                             <h3 class='card-title'>$<%= property.price %></h3>
                             <div class='property-content'>
 
-                                <div class="carousel dashboard-carousel">
-                                    <a class="carousel-item" href="#one!"><img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>" class='responsive-img'></a>
-                                    <a class="carousel-item" href="#two!"><img src="<%=property.imgURL%>" class='responsive-img'></a>                                   
-                                  </div>
-
+                                <% if(property.img.data) { %>
+                                    <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>">
+                                <% } %>
+                                <% if(property.imgURL) { %>
+                                    <%property.imgURL.forEach(url => { %>
+                                        
+                                        <img src="<%=url%>" class='card-image'>
+                                   <% }) %>
+                                    
+                                <% } %>
 
                                 <div>
                                     <div class='property-address'>
