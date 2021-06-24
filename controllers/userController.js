@@ -156,46 +156,83 @@ router.post('/register', (req, res, next) => {
 
 
 
-// router.put('/:id', (req, res) => {
-//     const id = req.params.id
-//     User.findOneAndUpdate(
-//         {_id: id},
-//         {
-//             email: req.body.email,
-//             password: req.body.password
-//         },
-//         { new: true },
-//         )
-//         .then(user => res.render('users', {user}))
-//         .catch(console.error)
-// })
+router.put('/:id', (req, res) => {
+    const id = req.params.id
+    User.findOneAndUpdate(
+        {_id: id},
+        {
+            email: req.body.email,
+            password: req.body.password
+        },
+        { new: true },
+        )
+        .then(user => res.render('users', {user}))
+        .catch(console.error)
+})
 
+router.get('/password/reset', (req, res) => {
+    res.render('resetrequest')
+})
 
+router.post('/password/reset', (req,res) => {
+    const url = encodeURIComponent(req.body.email)
+    console.log(`ENCODED URL: ${url}`)
+    res.redirect('../login')
+    let mailOptions = {
+        from: 'realestateappproject2@gmail.com',
+        to: req.body.email,
+        subject: 'Real Estate App password reset requested!',
+        html:
+        '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;"><a href="http://localhost:3000/user/password/' + encodeURIComponent(req.body.email) + '"' + '>Click here to reset your password!</a></h2>' 
+        + '<a href=http://localhost:3000/ style="color:white;"' 
+        + '>Visit the Real Estate App</a>' + '</div>' + '</body>'
+    }
+    
+    transporter.sendMail(mailOptions, (err, data) => {
+        if(err) {
+            console.log('Error', err)
+        } else {
+            console.log('Email sent')
+        }
+    })
+})
 
 
 //RESET PASSWORD
 router.put('/password/:email', (req, res) => {
-
-    console.log(req.body)
     bcrypt.genSalt(salt, (err, salt) => {
         bcrypt.hash(req.body.password, salt, (err, hash) => {
             User.findOneAndUpdate(
-                {_id: req.body._id},
-                {
-
-                    password: hash
-                },
+                { _id: req.body._id },
+                { password: hash },
                 { new: true },
                 )
             .then(user => res.redirect('../login'))
             .catch(console.error)
         })
     })
+    let mailOptions = {
+        from: 'realestateappproject2@gmail.com',
+        to: req.params.email,
+        subject: 'Real Estate App password changed!',
+        html:
+        '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;">You changed your password!</h2>' 
+        + '<a href=http://localhost:3000/ style="color:white;"' 
+        + '>Visit the Real Estate App</a>' + '</div>' + '</body>'
+    }
+    
+    transporter.sendMail(mailOptions, (err, data) => {
+        if(err) {
+            console.log('Error', err)
+        } else {
+            console.log('Email sent')
+        }
+    })
+    
 })
 
 router.get('/password/:email', (req, res) => {
-    const email = req.params.email + '.com'
-console.log(email)
+    const email = req.params.email
     User.findOne({email})
     .then(user => res.render('pwreset', {user}))
     

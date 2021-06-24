@@ -7,6 +7,8 @@
         <div class='card light-blue darken-4 z-depth-3 stock-card'>
             <div class="card-content white-text">
                 <h3 class='card-title'>$<%= property.price %></h3>
+            
+                
                 <div class='property-content'>
                     <% if(property.img.data) { %>
                         <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>">
@@ -33,7 +35,7 @@
                     </div>
                 </div>
             </div>
-            <iframe class='card-content'
+            <!-- <iframe class='card-content' -->
             width="600"
             height="450"
             style="border:0"

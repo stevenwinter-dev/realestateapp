@@ -1,10 +1,10 @@
 <main>
-<% console.log(user._id) %>
+
     <div class="row form-flex">
       <div class="col s12 m6">
         <div class="card white">
           <div class="card-content black-text">
-            <span class="card-title">Change Password for </span>
+            <span class="card-title center">Change Password for <%=user.email%></span>
       
             <form action="/user/password/<%=user.email%>?_method=put" method="POST" id='change-pw-form'>
               <div class="row">
