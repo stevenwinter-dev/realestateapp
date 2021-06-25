@@ -98,7 +98,7 @@ router.post('/favorites', isLoggedIn, (req, res, next) => {
         subject: 'Favorite Property Added!',
         html:
         '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;">You added a favorite property!</h2>' 
-        + '<a href=http://localhost:3000/property/ style="color:white;"' 
+        + '<a href=https://blooming-fortress-96429.herokuapp.com/property/ style="color:white;"' 
         + req.body.id + '>Check it out!</a>' + '</div>' + '</body>'
     }
     
@@ -212,7 +212,7 @@ router.post('/', upload.single('img'), isLoggedIn, (req, res, next) => {
         subject: 'You listed a property!',
         html:
         '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;">You added a listing!</h2>' 
-        + '<a href=http://localhost:3000/user/dashboard style="color:white;"' 
+        + '<a href=https://blooming-fortress-96429.herokuapp.com/user/dashboard style="color:white;"' 
         + '>View your listings!</a>' + '</div>' + '</body>'
     }
     
@@ -286,7 +286,7 @@ router.delete('/:id', isLoggedIn, (req, res, next) => {
         subject: 'You deleted a property!',
         html:
         '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;">You deleted a listing!</h2>' 
-        + '<a href=http://localhost:3000/user/dashboard style="color:white;"' 
+        + '<a href=https://blooming-fortress-96429.herokuapp.com/user/dashboard style="color:white;"' 
         + '>Add a new property!</a>' + '</div>' + '</body>'
     }
     

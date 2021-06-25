@@ -141,7 +141,7 @@ router.post('/register', (req, res, next) => {
         subject: 'Welcome to the Real Estate App',
         html:
         '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;">Thanks for joining!</h2>' 
-        + '<a href=http://localhost:3000/ style="color:white;"' 
+        + '<a href=https://blooming-fortress-96429.herokuapp.com/user/dashboard style="color:white;"' 
         + '>Visit the Real Estate App</a>' + '</div>' + '</body>'
     }
     
@@ -184,7 +184,7 @@ router.post('/password/reset', (req,res) => {
         subject: 'Real Estate App password reset requested!',
         html:
         '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;"><a href="http://localhost:3000/user/password/' + encodeURIComponent(req.body.email) + '"' + '>Click here to reset your password!</a></h2>' 
-        + '<a href=http://localhost:3000/ style="color:white;"' 
+        + '<a href=https://blooming-fortress-96429.herokuapp.com/user/dashboard style="color:white;"' 
         + '>Visit the Real Estate App</a>' + '</div>' + '</body>'
     }
     
@@ -217,7 +217,7 @@ router.put('/password/:email', (req, res) => {
         subject: 'Real Estate App password changed!',
         html:
         '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;">You changed your password!</h2>' 
-        + '<a href=http://localhost:3000/ style="color:white;"' 
+        + '<a href=https://blooming-fortress-96429.herokuapp.com/user/dashboard style="color:white;"' 
         + '>Visit the Real Estate App</a>' + '</div>' + '</body>'
     }
     
