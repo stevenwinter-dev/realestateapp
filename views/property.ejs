@@ -7,23 +7,25 @@
         <div class='card light-blue darken-4 z-depth-3 stock-card'>
             <div class="card-content white-text">
                 <h3 class='card-title'>$<%= property.price %></h3>
-            
-                
+                <p id='date' class='property-listedDate'>Listed on <%=property.createdAt.toDateString()%></p>
                 <div class='property-content'>
-                    <% if(property.img.data) { %>
-                        <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>">
-                    <% } %>
-                    <% if(property.imgURL) { %>
-                        <%property.imgURL.forEach(url => { %>
-                            <img src="<%=url%>" class='card-image'>
-                       <% }) %>
-                        
-                    <% } %>
+                    <div class="carousel carousel-property">
+                        <% if(property.img.data) { %>
+                            <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>" class="carousel-item responsive-img">
+                        <% } %>
+                        <% if(property.imgURL) { %>
+                            <%property.imgURL.forEach(url => { %>
+                                
+                                <img src="<%=url%>" class='card-image carousel-item responsive-img'>
+                           <% }) %>
+                            
+                        <% } %>
+                    </div>
                     <div>
                         <div class='property-address'>
-                            <p><%= property.address %> |</p>
-                            <p><%= property.city %> |</p>
-                            <p><%= property.state %> |</p>
+                            <p><%= property.address %> </p>
+                            <p><%= property.city %> </p>
+                            <p><%= property.state %> </p>
                             <p><%= property.zip %></p>
                         </div>
                         <p><%= property.bedrooms %> bedrooms</p>
@@ -35,7 +37,7 @@
                     </div>
                 </div>
             </div>
-            <!-- <iframe class='card-content' -->
+            <iframe class='card-content'
             width="600"
             height="450"
             style="border:0"

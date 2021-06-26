@@ -1,15 +1,15 @@
 <main>
-    <div class='index-bg show_bg_2'>
-        <h1>Real Estate Finder</h1>
-    </div>
 
     <% console.log(`INSIDE NEW ROUTE ${userId}`) %>
-
+    <div class="row form-flex">
+        <div class="col s12 m6">
+          <div class="card white">
+            <div class="card-content black-text">
         <h2 class='grey-text darken-4'>Create New Listing:</h2>
         <!-- enctype="multipart/form-data" -->
         <form action="/property/" method="POST" id='new-form' enctype="multipart/form-data">
 
-            <div class="row">
+            <div class="row s12">
                 <div class="input-field col s12">
                     <input id="seller" type="hidden" name='seller' class="validate" value='<%=userId%>'>
                 </div>
@@ -59,13 +59,13 @@
             <div class="row">
                 <div class="input-field col s12">
                     <input id="imgURL" type="text" name='imgURL' class="validate">
-                    <label name="imgURL">Image URL(s) - Seperate URLs with a space between each</label>
+                    <label name="imgURL">Image URL(s) - Seperate URLs with a space</label>
                 </div>
             </div>
             <div class="row">
                 <div class="input-field col s12">
-                    <input id="img" name='img' class="validate" type="file">
-                    <label name="img">Upload an Image</label>
+                    <input id="img" name='img' class="validate black-text" type="file">
+                    <label name="img" id='img-upload'>Upload an Image</label>
                 </div>
             </div>
             <div class="row">
@@ -77,5 +77,9 @@
         </form>
     <div class="modal-footer">
         <a class="waves-effect waves-light btn green accent-3" id='create'>Submit</a>
+    </div>
+            </div>
+          </div>
+        </div>
     </div>
 </main>

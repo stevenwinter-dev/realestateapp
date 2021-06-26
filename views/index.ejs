@@ -7,7 +7,7 @@
     </div> -->
     <section class='index-header'>
     <div class='index-h1-img-container'>
-        <h1>Find the best real estate in your area for a good price</h1>
+        <h1 class='index-h1'>Find the best real estate in your area for a good price</h1>
         <img src="./images/modernhouse.jpeg" alt="home" class='index-home'>
     </div>
     <h2>Buy your dream home today</h2>
@@ -18,23 +18,25 @@
         <!-- <div class='card light-blue darken-4 z-depth-3 stock-card'> -->
             <div class="card-content">
                 <h3 class='card-title'>$<%= property.price %></h3>
-                <p class='property-listedDate'>Listed 10 days ago</p>
+                <p class='property-listedDate'>Listed on <%=property.createdAt.toDateString()%></p>
                 <div class='property-content'>
-                    <% if(property.img.data) { %>
-                        <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>">
-                    <% } %>
-                    <% if(property.imgURL) { %>
-                        <%property.imgURL.forEach(url => { %>
+                    <div class="carousel">
+                        <% if(property.img.data) { %>
+                            <img src="data:image/<%=property.img.contentType%>;base64,<%=property.img.data.toString('base64')%>" class="carousel-item responsive-img">
+                        <% } %>
+                        <% if(property.imgURL) { %>
+                            <%property.imgURL.forEach(url => { %>
+                                
+                                <img src="<%=url%>" class='card-image carousel-item responsive-img'>
+                           <% }) %>
                             
-                            <img src="<%=url%>" class='card-image'>
-                       <% }) %>
-                        
-                    <% } %>
+                        <% } %>
+                    </div>
                     <div>
                         <div class='property-address'>
-                            <p><%= property.address %> |</p>
-                            <p><%= property.city %> |</p>
-                            <p><%= property.state %> |</p>
+                            <p><%= property.address %> </p>
+                            <p><%= property.city %> </p>
+                            <p><%= property.state %> </p>
                             <p><%= property.zip %></p>
                         </div>
                         <p><%= property.bedrooms %> bedrooms</p>
