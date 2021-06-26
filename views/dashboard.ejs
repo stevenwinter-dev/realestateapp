@@ -1,20 +1,22 @@
-<main>  
+<main class='dashboard-main'>  
 
-    <div class="row">
+    <div class="row dashboard-container">
         <div class="col s12">
           <ul class="tabs">
-            <li class="tab col s3"><a href="#test1" class="active ">View your listings</a></li>
-            <li class="tab col s3"><a href="#test2">View your favorites</a></li>
+            <li class="tab"><a href="#test1" class="active ">View your listings</a></li>
+            <li class="tab"><a href="#test2">View your favorites</a></li>
           </ul>
           
         </div>
-        <a class="col s4 offset-s4 waves-effect waves-light btn green accent-3 add-btn" href='/property/new' >Add new listing</a>
+        
         <% if(properties) { %>
             <div class="card-container col s12" id="test1">
+                <a class=" col s4 offset-s4 waves-effect waves-light btn green add-btn" href='/property/new' >Add new listing</a>
                 <% properties.forEach(property => { %>
-                    <div class='card light-blue darken-4 z-depth-3 stock-card'>
-                        <div class="card-content white-text">
+                    <div class='card white lighten-4 z-depth-4 z-depth-3 stock-card'>
+                        <div class="card-content grey-text text-darken-3">
                             <h3 class='card-title'>$<%= property.price %></h3>
+                            <p>Listed on <%= property.createdAt.toDateString() %></p>
                             <div class='property-content'>
                                 <div class="carousel">
                                 <% if(property.img.data) { %>
@@ -148,12 +150,21 @@
                     <div class="card-content white-text">
                         <h3 class='card-title'>$<%= fav.price %></h3>
                         <div class='property-content'>
-                            <% if(fav.imgURL) { %>
-                                <%fav.imgURL.forEach(url => { %>
-                                    <img src="<%=url%>" class='card-image'>
-                               <% }) %>
-                                
-                            <% } %>
+                            
+                            <div class="carousel">
+                                <% if(fav.img.data) { %>
+                                    <img src="data:image/<%=fav.img.contentType%>;base64,<%=fav.img.data.toString('base64')%>" class="carousel-item">
+                                <% } %>
+                                <% if(fav.imgURL) { %>
+                                    <%fav.imgURL.forEach(url => { %>
+                                        
+                                        <img src="<%=url%>" class='card-image carousel-item'>
+                                   <% }) %>
+                                    
+                                <% } %>
+                            </div>
+                            
+                         
                             <div>
                                 <div class='property-address'>
                                     <p><%= fav.address %> |</p>

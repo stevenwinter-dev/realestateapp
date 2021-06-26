@@ -1,10 +1,4 @@
 <main>
-    <!-- <div class="parallax-container">
-        <div class="parallax"><img src="https://images.unsplash.com/photo-1568634500241-7fd96820b224?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1489&q=80"></div>
-        <div class=' show_bg_2'>
-            <h1>Real Estate Finder</h1>
-        </div>
-    </div> -->
     <section class='index-header'>
     <div class='index-h1-img-container'>
         <h1 class='index-h1'>Find the best real estate in your area for a good price</h1>
@@ -14,9 +8,9 @@
 </section>
     <div class="card-container">
     <% property.forEach(property => { %>
-        <div class='card cyan lighten-4 z-depth-4 stock-card'>
+        <div class='card white lighten-4 z-depth-4 stock-card index-cards'>
         <!-- <div class='card light-blue darken-4 z-depth-3 stock-card'> -->
-            <div class="card-content">
+            <div class="card-content grey-text text-darken-3">
                 <h3 class='card-title'>$<%= property.price %></h3>
                 <p class='property-listedDate'>Listed on <%=property.createdAt.toDateString()%></p>
                 <div class='property-content'>
@@ -46,7 +40,7 @@
                        <% } %>
                         
                         <div class='btn-container'>
-                            <a class="waves-effect waves-light btn green accent-3 view-btn" href="/property/<%=property.id%>">Check it out!</a>
+                            <a class="waves-effect waves-light btn light-blue darken-4 view-btn" href="/property/<%=property.id%>">Check it out!</a>
                             <form action="/property/favorites" method="POST" class='favorite-form' id='<%= property.id %>'>
                                 <input type="hidden" name='id' value='<%=property.id%>' class='favorite'>
                                 <a class="waves-effect waves-light btn-floating btn-large waves-effect waves-light favorite-btn

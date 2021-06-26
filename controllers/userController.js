@@ -239,13 +239,13 @@ router.get('/password/:email', (req, res) => {
 })
 
 
-// router.get('/:id', (req, res) => {
-//     const id = req.params.id
-//     // User.findById(id)
-//     Property.find({seller: id})
-//     .populate('seller')
-//     .then(property => res.render('user', {property}))
-// })
+router.get('/:id', (req, res) => {
+    const id = req.params.id
+    // User.findById(id)
+    Property.find({seller: id})
+    .populate('seller')
+    .then(property => res.render('user', {property, user: req.user}))
+})
 
 
 

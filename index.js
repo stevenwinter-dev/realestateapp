@@ -28,6 +28,7 @@ app.use(ejsLayouts)
 app.use(express.static(__dirname + '/public'))
 app.use(methodOverride('_method'))
 
+
 app.get('/', (req, res) => {
     res.render('index.html')})
 
