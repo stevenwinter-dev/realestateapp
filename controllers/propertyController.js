@@ -65,7 +65,7 @@ router.post('/upload', upload.single('image'), (req, res, next) => {
 
 //SHOW ALL
 router.get('/', (req, res, next) => {
-    // console.log(`properties user logged in? ${req.user}`)
+    console.log(`properties user logged in? ${req.user}`)
     // console.log(`USER: ${req.user}`)
     Property.find({})
     .populate('seller')
@@ -137,7 +137,7 @@ router.get('/:id', (req, res, next) => {
     const id = req.params.id
     Property.findById(id)
     .populate('seller')
-    .then(property => res.render('property', {property}))
+    .then(property => res.render('property', {property, user: req.user}))
 })
 
 
@@ -202,7 +202,7 @@ router.post('/', upload.single('img'), isLoggedIn, (req, res, next) => {
     })
     .then(property => {
         console.log(property.id)
-        res.render('property', {property})
+        res.render('property', {property, user: req.user})
     })
     .catch(next)
 
@@ -256,7 +256,7 @@ router.put('/:id', upload.single('img'), (req, res) => {
         },
         { new: true },
         )
-        .then(property => res.render('property', {property}))
+        .then(property => res.render('property', {property, user: req.user}))
         .catch(console.error)
 })
 

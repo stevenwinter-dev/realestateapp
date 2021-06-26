@@ -84,7 +84,7 @@ function isLoggedIn(req, res, next) {
 router.get('/', (req, res) => {
     User.find({})
     .populate('listings')
-    .then(users => res.render('users', {users}))
+    .then(users => res.render('users', {users, user: req.user}))
 })
 
 router.get('/dashboard', isLoggedIn, (req, res) => {
@@ -94,7 +94,7 @@ router.get('/dashboard', isLoggedIn, (req, res) => {
         User.findById(req.user.id)
         .populate('favorites')
         .then(favorites => {
-            res.render('dashboard', {properties: properties, favorites: favorites})
+            res.render('dashboard', {properties: properties, favorites: favorites, user: req.user})
         })
         
     })
@@ -102,7 +102,7 @@ router.get('/dashboard', isLoggedIn, (req, res) => {
 
 router.get('/login', (req, res) => {
     const errors = req.flash().error || []
-    res.render('login', { errors })
+    res.render('login', { errors , user: req.user})
 })
 
 // router.post('/login', passport.authenticate('local', {
@@ -117,7 +117,7 @@ router.post('/login', (req, res, next) => {
 })(req, res, next)})
 
 router.get('/register', (req, res, next) => {
-    res.render('register')
+    res.render('register', {user: req.user})
 })
 
 router.post('/register', (req, res, next) => {
@@ -128,7 +128,7 @@ router.post('/register', (req, res, next) => {
                 email: req.body.email,
                 password: hash
             })
-            .then(user => res.render('login', {errors: err}))
+            .then(user => res.render('login', {errors: err, user: req.user}))
             .catch(next)
         });
     });
@@ -171,7 +171,7 @@ router.put('/:id', (req, res) => {
 })
 
 router.get('/password/reset', (req, res) => {
-    res.render('resetrequest')
+    res.render('resetrequest', {user: req.user})
 })
 
 router.post('/password/reset', (req,res) => {

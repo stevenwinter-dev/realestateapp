@@ -163,7 +163,6 @@ background: #000428;  /* fallback for old browsers */
 background: -webkit-linear-gradient(to left, #004e92, #000428);  /* Chrome 10-25, Safari 5.1-6 */
 background: linear-gradient(to left, #004e92, #000428); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 margin-bottom: 220px;
-
 }
 
 .index-home {
@@ -388,11 +387,3 @@ background: linear-gradient(to left, #004e92, #000428); /* W3C, IE 10+/ Edge, Fi
         letter-spacing: 1px;
     }
 }
-
-/* <section class='index-header'>
-    <div class='index-h1-img-container'>
-        <h1>Find the best real estate in your area for a good price</h1>
-        <img src="./images/modernhouse.jpeg" alt="home" class='index-home'>
-    </div>
-    <h2>Buy your dream home today</h2>
-</section> */

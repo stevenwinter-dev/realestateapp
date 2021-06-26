@@ -1,13 +1,12 @@
 <header>
+  <% if(user) {console.log('hii')} %>
   <nav>
     <div class="nav-wrapper">
-      
       <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
       <ul class="left hide-on-med-and-down">
         <li><a href="/property">Properties</a></li>
         <li><a href="/user">Realtors</a></li>
-        <li><a href="/user/dashboard">Dashboard</a></li>
-        <li><a href="/user/login">Login</a></li>
+        <li><a href="/user/<%= user ? 'dashboard' : 'login'%>"><%=user ? 'dashboard' : 'login'%></a></li> 
       </ul>
     </div>
   </nav>
@@ -15,7 +14,6 @@
   <ul class="sidenav" id="mobile-demo">
     <li><a href="/property">Properties</a></li>
     <li><a href="/user">Realtors</a></li>
-    <li><a href="/user/dashboard">Dashboard</a></li>
-    <li><a href="/user/login">Login</a></li>
+    <li><a href="/user/<%= user ? 'dashboard' : 'login'%>"><%=user ? 'dashboard' : 'login'%></a></li> 
   </ul>
 </header>
