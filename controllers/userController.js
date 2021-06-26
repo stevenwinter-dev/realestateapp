@@ -183,7 +183,7 @@ router.post('/password/reset', (req,res) => {
         to: req.body.email,
         subject: 'Real Estate App password reset requested!',
         html:
-        '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;"><a href="http://localhost:3000/user/password/' + encodeURIComponent(req.body.email) + '"' + '>Click here to reset your password!</a></h2>' 
+        '<body style="background-color: #004e92; height:150px;">' + '<div>' +'<h2 style="color:white;"><a href="https://blooming-fortress-96429.herokuapp.com/user/password/' + encodeURIComponent(req.body.email) + '"' + '>Click here to reset your password!</a></h2>' 
         + '<a href=https://blooming-fortress-96429.herokuapp.com/user/dashboard style="color:white;"' 
         + '>Visit the Real Estate App</a>' + '</div>' + '</body>'
     }
