@@ -129,7 +129,7 @@ router.put('/favorite/:id', isLoggedIn, (req, res) => {
 //NEW
 router.get('/new', isLoggedIn, (req, res, next) => {
     const userId = req.user.id
-    res.render('new', {userId})
+    res.render('new', {userId, user: req.user})
 })
 
 //SHOW ONE
