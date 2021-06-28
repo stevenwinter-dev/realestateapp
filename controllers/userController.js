@@ -170,6 +170,11 @@ router.put('/:id', (req, res) => {
         .catch(console.error)
 })
 
+router.get('/logout', (req, res) => {
+    req.logout()
+    res.redirect('login')
+})
+
 router.get('/password/reset', (req, res) => {
     res.render('resetrequest', {user: req.user})
 })
