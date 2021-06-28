@@ -502,6 +502,9 @@ i {
         border-radius: 15px;
         text-align: center;
     }
+    img.responsive-img, video.responsive-video {
+        max-width: none;
+    }
 }
 
 
