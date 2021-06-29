@@ -19,9 +19,6 @@ app.use(express.urlencoded({ extended: true }))
 app.use(passport.initialize())
 app.use(passport.session())
 
-// passport.serializeUser((user, done) => {
-//     done(null, user.id)
-// })
 
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)

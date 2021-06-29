@@ -9,7 +9,6 @@
     <div class="card-container">
     <% property.forEach(property => { %>
         <div class='card white lighten-4 z-depth-4 stock-card index-cards'>
-        <!-- <div class='card light-blue darken-4 z-depth-3 stock-card'> -->
             <div class="card-content grey-text text-darken-3">
                 <h3 class='card-title'>$<%= property.price %></h3>
                 <p class='property-listedDate'>Listed on <%=property.createdAt.toDateString()%></p>
