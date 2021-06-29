@@ -85,11 +85,4 @@ Finally, my last wireframe shows the form used to create a new listing. I expand
 
 ## Future Features
 
-<<<<<<< HEAD
 - I think adding a search feature would be helpful for this project. Specifying a location is something a user would expect in an application like this. Each property contains an address already so implementing this would simply require an extra Mongoose query. 
-
-
-![hearthstone simon](https://i.imgur.com/uReO3bX.png)
-=======
-- I think adding a search feature would be helpful for this project. Specifying a location is something a user would expect in an application like this. Each property contains an address already so implementing this would simply require an extra Mongoose query. 
->>>>>>> 0115940 (Completed readme.)
