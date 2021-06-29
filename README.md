@@ -16,6 +16,9 @@ Registered users are also given access to the "Add a new listing" feature. A use
 
 Be sure to check your email inbox for important messages. The Real Estate App will let you know by email when you successfully register a new account, when you have created a new listing, when you have deleted a listing, or when a user has favorited one of your properties. You will also receive an email with further instructions if you request a new password. 
 
+![realestate9mb](https://user-images.githubusercontent.com/44855775/123856930-4c0e9080-d8e7-11eb-8796-312b995fda94.gif)
+
+
 ## Technologies Used
 
 - HTML
