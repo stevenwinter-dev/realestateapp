@@ -1,7 +1,13 @@
+<div class="user-container">
+    <div class="card users-card">
+        <div class="card-content">
+<h2><%= property[0].seller.name %></h2>
+<h3><%= property[0].seller.email %></h3>
 
-<h2><%= property[0].seller.email %></h2>
-<% console.log(property.length) %>
 
 <% property.map(prop => {%>
     <p><a href="/property/<%=prop.id%>"><%= prop.address %></a></p>
 <% })%>
+        </div>
+        </div>  
+</div>
