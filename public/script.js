@@ -148,7 +148,3 @@ function deleteHandler(e) {
   console.log(deleteForm)
   deleteForm.submit()
 }
-
-function hi(name) {
-  alert('hi' + name)
-}

@@ -57,20 +57,6 @@ passport.use(new localStrategy({usernameField: 'email', passReqToCallback: true}
         })
     })
 }))
-// passport.use(new localStrategy({usernameField: 'email'}, (email, password, done) => {
-//     User.findOne({email: email}, (err, user) => {
-//         if(err) return done(err)
-//         if(!user) {
-//             return done(null, false, {message: 'Email not found'})
-//         }
-
-//         bcrypt.compare(password, user.password, (err, res) => {
-//             if(err) return done(err)
-//             if(res === false) return done(null, false,{ message: 'Wrong password'})
-//             return done(null, user)
-//         })
-//     })
-// }))
 
 function isLoggedIn(req, res, next) {
     if(req.user) {
@@ -105,10 +91,6 @@ router.get('/login', (req, res) => {
     res.render('login', { errors , user: req.user})
 })
 
-// router.post('/login', passport.authenticate('local', {
-//     successRedirect: '/user/dashboard',
-//     failureRedirect: '/user/login?error=true'
-// }))
 router.post('/login', (req, res, next) => { 
     passport.authenticate('local', {
     successRedirect: '/user/dashboard',
@@ -243,7 +225,6 @@ router.get('/password/:email', (req, res) => {
     
 })
 
-
 router.get('/:id', (req, res) => {
     const id = req.params.id
     // User.findById(id)
@@ -251,10 +232,6 @@ router.get('/:id', (req, res) => {
     .populate('seller')
     .then(property => res.render('user', {property, user: req.user}))
 })
-
-
-
-
 
 router.delete('/', (req, res) => {
     const id = req.params.id

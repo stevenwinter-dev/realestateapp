@@ -17,14 +17,6 @@ let transporter = nodemailer.createTransport(smtpTransport({
     }
 }))
 
-// const storage = multer.diskStorage({
-//     destination: (req, file, cb) => {
-//       cb(null, '../project2-real-estate/public/images')
-//     },
-//     filename: (req, file, cb) => {
-//       cb(null, Date.now() + '--' + file.originalname)
-//     }
-// }) 
 const fileFilter = (req, file, cb) => {
 
     //if the filetype is not right
@@ -149,27 +141,6 @@ router.post('/upload', upload.single('image'), (req, res, next) => {
     response += `<img src="${req.file.path}" /><br>`
     res.send(response)
 })
-//TEST MULTER PROPERTY CREATE
-// router.post('/', upload.single('img'), (req, res, next) => {
-//     // img: {data: req.file.buffer}
-//     Property.create({
-//         seller: req.body.seller,
-//     price: req.body.price,
-//     address: req.body.address,
-//     city: req.body.city,
-//     state: req.body.state,
-//     zip: req.body.zip,
-//     bedrooms: req.body.bedrooms,
-//     baths: req.body.baths,
-//     img: req.file,
-//     description: req.body.description
-//     })
-//     .then(property => res.render('property', {property}))
-//     .catch(next)
-// })
-
-
-
 
 //CREATE
 router.post('/', upload.single('img'), isLoggedIn, (req, res, next) => {
@@ -260,17 +231,6 @@ router.put('/:id', upload.single('img'), (req, res) => {
         .catch(console.error)
 })
 
-//DELETE
-// router.delete('/:id', (req, res, next) => {
-//     const id = req.params.id
-//     Property.findOneAndDelete({_id: id})
-//     .then(() => {
-//         Property.find({})
-//         .then(property => res.render('index', {property}))
-//     })
-//     .catch(next)
-// })
-
 router.delete('/:id', isLoggedIn, (req, res, next) => {
     const id = req.params.id
     Property.findOneAndDelete({_id: id})
@@ -298,20 +258,5 @@ router.delete('/:id', isLoggedIn, (req, res, next) => {
         }
     })
 })
-
-//WORKING ON DELETE
-// router.delete('/:id', (req, res, next) => {
-//     const id = req.params.id
-//     console.log(req.params)  
-//     console.log(`console log 103 ${req.body}`)
-//     console.log(`console log 104 ${req.params}`)
-//     Property.findOneAndDelete({_id: id})
-//     .then(() => {
-//         Property.find({id: req.user.seller})
-//         .populate('seller')
-//         .then(properties => res.render('dashboard', {property: properties}))
-//     })
-//     .catch(next)
-// })
 
 module.exports = router
