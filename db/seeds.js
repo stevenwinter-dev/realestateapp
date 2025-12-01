@@ -1,3 +1,5 @@
+require('./connection'); 
+
 const Property = require('../models/property')
 const Users = require('../models/user')
 const seedData = require('./seeds.json')
