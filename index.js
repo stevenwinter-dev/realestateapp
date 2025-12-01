@@ -20,6 +20,10 @@ app.use(passport.initialize())
 app.use(passport.session())
 
 
+app.get('/', (req, res) => {
+  res.redirect('/property');
+});
+
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(express.static(__dirname + '/public'))
